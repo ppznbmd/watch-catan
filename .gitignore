@@ -5,6 +5,7 @@ __pycache__/
 .pytest_cache/
 .env
 .env.*
+!.env.example
 runs/scratch/
 
 # Working notes, kept local and out of the public repo
