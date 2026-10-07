@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>watch-catan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="bar">
+    <div class="identity">
+      <h1>watch&#8209;catan</h1>
+      <span class="run-name" id="run-name">no run loaded</span>
+    </div>
+
+    <div class="now">
+      <span class="label">turn</span>
+      <strong class="turn" id="turn">—</strong>
+      <span class="dice" id="dice" hidden></span>
+      <span class="prompt" id="prompt"></span>
+    </div>
+
+    <div class="controls">
+      <select id="run-picker" aria-label="run"></select>
+      <button id="theme" class="ghost" title="light / dark">&#9681;</button>
+    </div>
+  </header>
+
+  <main class="board-pane">
+    <svg id="board" role="img" aria-label="the board"></svg>
+    <!-- The four seats sit in the corners the hexagon leaves empty, in turn
+         order, so the screen is laid out like the table it is showing. -->
+    <section class="seats" id="seats"></section>
+    <p class="empty" id="empty">Pick a run, or play one:
+      <code>.venv/bin/python -m arena.play --dry-run</code></p>
+  </main>
+
+  <aside class="side">
+    <div class="feed-head">
+      <h2>At the table</h2>
+      <label class="toggle"><input type="checkbox" id="show-moves" checked> moves</label>
+      <label class="toggle"><input type="checkbox" id="show-why" checked> reasoning</label>
+    </div>
+    <ol class="feed" id="feed"></ol>
+  </aside>
+
+  <footer class="transport">
+    <button id="back" class="step" title="previous ply (&larr;)">&#9664;&#9664;</button>
+    <button id="play" class="play" title="play / pause (space)">&#9654;</button>
+    <button id="next" class="step" title="next ply (&rarr;)">&#9654;&#9654;</button>
+
+    <input type="range" id="scrub" min="0" max="0" value="0" aria-label="ply">
+
+    <span class="position"><span id="position">0</span> / <span id="total">0</span></span>
+
+    <select id="speed" aria-label="speed">
+      <option value="800">slow</option>
+      <option value="320" selected>1&times;</option>
+      <option value="110">fast</option>
+      <option value="35">blitz</option>
+    </select>
+
+    <span class="live" id="live" hidden>live</span>
+    <button id="to-live" class="ghost" hidden>jump to live</button>
+  </footer>
+
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

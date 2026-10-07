@@ -1,0 +1,8 @@
+# Catanatron 3.3.0 carries player-to-player trading; PyPI's newest (3.2.1) does
+# not — its ActionType has MARITIME_TRADE and a TODO where domestic trade should
+# be. So this is pinned to a commit, not a release.
+catanatron @ git+https://github.com/bcollazo/catanatron.git@ecf931181b9a65bb4116a2153fb78c16f1438e00
+openai>=3.0        # DeepSeek and anything else OpenAI-compatible
+anthropic>=1.6.0   # optional: only needed for claude-* seats
+pydantic>=2.0
+pytest

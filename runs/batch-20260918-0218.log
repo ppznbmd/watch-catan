@@ -1,0 +1,95 @@
+== smoke sex. 18 set 2026 02:18:56 -03
+model   : gpt-5.6-luna
+effort  : provider default
+persona : Hard bargainer
+seat    : BLUE, turn 23, 1 legal moves
+
+--- answered in 8.0s ---
+
+reasoning: I cannot build from my current hand, and brick is the missing resource for a road or settlement. Orange refused the original offer because they need ore, so I will redirect a straightforward 1:1 ore-for-brick offer to the table without overpaying.
+
+choice   : authored an offer: give ['ore'] want ['brick']
+say      : That was backwards: I’ll give one ore for one brick. Anyone interested?
+
+tokens   : 1,197 in, 0 cached, 537 out
+cost     : $0.00088 for this one call
+           $0.23 extrapolated to a 264-call match
+           35 min extrapolated, if calls stay serial
+
+== match 1 of 4 — sex. 18 set 2026 02:19:05 -03
+
+watch-catan — gpt-5.6-luna (effort: provider default)
+
+
+------------------------------------------------------------------------
+winner: ORANGE in 121 turns (2339.7s, 95 offers made)
+  RED     Hard bargainer     gpt-5.6-luna          7 VP  146 calls  0 unusable  0 fallbacks  (56 calls saved)
+  BLUE    Cooperator         gpt-5.6-luna          6 VP  156 calls  0 unusable  0 fallbacks  (35 calls saved)
+  ORANGE  Quiet builder      gpt-5.6-luna         10 VP  151 calls  0 unusable  0 fallbacks  (4 calls saved)
+  WHITE   ValueFunctionPlayer bot                   9 VP    0 calls  0 unusable  0 fallbacks
+
+  RED     gpt-5.6-luna         237,188 in       0 cached  62,675 out  $0.1226
+  BLUE    gpt-5.6-luna         242,388 in       0 cached  53,151 out  $0.1123
+  ORANGE  gpt-5.6-luna         246,688 in       0 cached  49,080 out  $0.1082
+          total                                                  $0.3431
+
+replay: /home/pedro/projects/watch-catan/runs/20260918-021906-aec256.jsonl
+
+== match 2 of 4 — sex. 18 set 2026 02:58:06 -03
+
+watch-catan — gpt-5.6-luna (effort: provider default)
+
+
+------------------------------------------------------------------------
+winner: RED in 93 turns (1672.3s, 83 offers made)
+  RED     Hard bargainer     gpt-5.6-luna         10 VP  121 calls  0 unusable  0 fallbacks  (29 calls saved)
+  BLUE    Cooperator         gpt-5.6-luna          7 VP  114 calls  0 unusable  0 fallbacks
+  ORANGE  Quiet builder      gpt-5.6-luna          5 VP   88 calls  0 unusable  0 fallbacks  (10 calls saved)
+  WHITE   ValueFunctionPlayer bot                   7 VP    0 calls  0 unusable  0 fallbacks
+
+  RED     gpt-5.6-luna         179,579 in       0 cached  43,174 out  $0.0877
+  BLUE    gpt-5.6-luna         175,162 in       0 cached  40,514 out  $0.0836
+  ORANGE  gpt-5.6-luna         128,296 in       0 cached  26,512 out  $0.0575
+          total                                                  $0.2288
+
+replay: /home/pedro/projects/watch-catan/runs/20260918-025807-1bda6d.jsonl
+
+== match 3 of 4 — sex. 18 set 2026 03:25:59 -03
+
+watch-catan — gpt-5.6-luna (effort: provider default)
+
+
+------------------------------------------------------------------------
+winner: RED in 85 turns (1668.8s, 89 offers made)
+  RED     Hard bargainer     gpt-5.6-luna         11 VP  103 calls  0 unusable  0 fallbacks  (31 calls saved)
+  BLUE    Cooperator         gpt-5.6-luna          7 VP  111 calls  0 unusable  0 fallbacks
+  ORANGE  Quiet builder      gpt-5.6-luna          7 VP  103 calls  0 unusable  0 fallbacks  (18 calls saved)
+  WHITE   ValueFunctionPlayer bot                   7 VP    0 calls  0 unusable  0 fallbacks
+
+  RED     gpt-5.6-luna         156,929 in       0 cached  40,240 out  $0.0797
+  BLUE    gpt-5.6-luna         178,671 in       0 cached  45,800 out  $0.0907
+  ORANGE  gpt-5.6-luna         162,079 in       0 cached  32,870 out  $0.0719
+          total                                                  $0.2422
+
+replay: /home/pedro/projects/watch-catan/runs/20260918-032600-d9f7eb.jsonl
+
+== match 4 of 4 — sex. 18 set 2026 03:53:49 -03
+
+watch-catan — gpt-5.6-luna (effort: provider default)
+
+
+------------------------------------------------------------------------
+winner: ORANGE in 88 turns (1609.6s, 80 offers made)
+  RED     Hard bargainer     gpt-5.6-luna          4 VP  108 calls  0 unusable  0 fallbacks
+  BLUE    Cooperator         gpt-5.6-luna          9 VP  109 calls  0 unusable  0 fallbacks  (31 calls saved)
+  ORANGE  Quiet builder      gpt-5.6-luna         10 VP   93 calls  0 unusable  0 fallbacks  (8 calls saved)
+  WHITE   ValueFunctionPlayer bot                   5 VP    0 calls  0 unusable  0 fallbacks
+
+  RED     gpt-5.6-luna         157,108 in       0 cached  43,136 out  $0.0832
+  BLUE    gpt-5.6-luna         170,040 in       0 cached  35,753 out  $0.0769
+  ORANGE  gpt-5.6-luna         141,932 in       0 cached  27,890 out  $0.0619
+          total                                                  $0.2220
+
+replay: /home/pedro/projects/watch-catan/runs/20260918-035350-9cac43.jsonl
+
+== done sex. 18 set 2026 04:20:40 -03

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+# runs/*.jsonl is DATA — real matches are kept, not ignored
+.pytest_cache/
+.env
+.env.*
+runs/scratch/
+
+# Working notes, kept local and out of the public repo
+JOURNAL.md
+ideas.txt
+insights.md
+pensamentos.md
+posts/

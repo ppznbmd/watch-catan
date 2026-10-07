@@ -1,0 +1,660 @@
+
+watch-catan — deepseek-flash (effort: provider default)
+
+  RED     Hard bargainer     deepseek-flash
+  BLUE    Cooperator         deepseek-flash
+  ORANGE  Quiet builder      deepseek-flash
+  GREY    Plain              deepseek-flash
+
+  BLUE    build a settlement at node 15
+          "I'm taking the 13-pip spot. Happy to trade wood for brick or ore later."
+  BLUE    build a road on edge (4, 15)
+          "Road's down toward the wheat side. Once the dice start rolling I'll have wood to spare — brick and ore are what I'm after, so come find me."
+  ORANGE  build a settlement at node 8
+  ORANGE  [unusable reply: the reply was cut off: the token limit ran out while the model was still reasoning]
+  ORANGE  build a road on edge (8, 9)
+  GREY    build a settlement at node 22
+          "I'll take the ore and sheep spot."
+  GREY    build a road on edge (20, 22)
+  RED     [unusable reply: the reply was cut off: the token limit ran out while the model was still reasoning]
+  RED     build a settlement at node 10
+  RED     build a road on edge (10, 11)
+          "Going west for a little breathing room. I've got nothing to trade yet, so don't bother asking."
+  RED     build a settlement at node 5
+          "Settling in on the wood-and-brick corner. Plenty of people are going to want what comes off those hills, so come with a real offer or don't come at all."
+  RED     build a road on edge (0, 5)
+          "Road's heading inland toward the ore hills — I've got no ore coming in and that needs fixing. Still not parting with wood or brick on the cheap, so don't waste your breath."
+  GREY    build a settlement at node 19
+          "I'll quietly round out my little corner and stay out of everyone's way for now."
+  GREY    build a road on edge (19, 20)
+          "Quiet suits me — I'll just tie my two little farms together and keep out of the way."
+  ORANGE  build a settlement at node 12
+  ORANGE  build a road on edge (3, 12)
+  BLUE    build a settlement at node 1
+          "No goods to move yet, but I'm the friendliest trader at this table — once I'm producing I'll be handing out fair deals, so keep me in mind."
+  BLUE    build a road on edge (0, 1)
+          "Still building up my engine — I'm holding wheat and ore and I need wood and brick. Anyone who sends a wood or brick my way gets a fair deal back, and I remember who dealt straight with me."
+  BLUE    offer 1 wheat, 1 ore for 1 wood, 1 brick
+          "I'm sitting on wheat and ore but can't build without wood and brick. I'll swap one wheat and one ore for a wood and a brick — fair deal, and I remember who helps me expand."
+  RED     reject the offer on the table
+          "Wheat I can grow myself — it's ore I can't make, and you're asking for my only wood and my only brick. Two ore and they're yours; one ore doesn't come close."
+  BLUE    offer 1 ore for 1 brick
+          "Red, I hear you on the ore. I've only got one, but I'll send it your way for a single brick — you keep your wood, and we both get moving."
+  GREY    accept the offer on the table
+          "Done — ore's what I'm short of, take the brick. Blue, if you ever come into wood, remember who dealt straight with you first."
+  RED     reject the offer on the table
+          "You're the one who can't build without me, Blue — one brick for one ore and a wheat on top. Send it back my way when you're serious."
+  BLUE    close the trade with GREY
+          "Done, Grey — that's the straight deal I was looking for. Red, you drove too hard a bargain, but I'll still trade with you when the price is fair."
+  BLUE    build a road on edge (15, 17)
+          "I've run a road up toward the open north — anyone who sends wood or brick my way next gets a fair deal back, and Grey, you know I pay my debts when someone deals straight with me."
+  ORANGE  end your turn
+  GREY    offer 2 sheep for 1 wood
+          "Sheep have been piling up on me — I'll give two for a single wood, anyone got a spare plank?"
+  ORANGE  accept the offer on the table
+          "Fine, I'll take that."
+  RED     reject the offer on the table
+          "Sheep I can already grow — I'd rather have ore. Same wood, one ore and it's yours."
+  GREY    close the trade with ORANGE
+          "Sorry RED — I already shook on it with ORANGE, and sheep is what I'm lousy with anyway. Hold that wood offer though, I may come knocking for it once this plank gets spent."
+  GREY    offer 1 ore for 1 wood
+          "Deal, RED — ore I can spare, wood I can't. Shake on it."
+  RED     reject the offer on the table
+          "Ore's the piece I'm short, but a lone ore just sits there without a sheep to go with it. Throw in one sheep and the wood is yours."
+  GREY    buy a development card
+  RED     build a road on edge (11, 32)
+          "Staking my claim on that ore edge before somebody wanders over. Still open for business on trades, but nobody's getting my wheat for pocket lint."
+  RED     offer 2 wheat for 1 sheep, 1 ore
+          "Three wheat and nothing to build with — two of them for an ore and a sheep, and we both come out ahead."
+  BLUE    reject the offer on the table
+          "Red, ore's the one thing I don't hand out for wheat I already roll by the bushel. To the rest of you: two wheat for one brick, and whoever shakes on it gets first call on my next favour."
+  ORANGE  reject the offer on the table
+  GREY    reject the offer on the table
+          "Wheat I can roll myself, RED — brick is the piece I'm short of. Same ore, straight across for one brick, and you get the ore you keep asking for."
+  RED     end your turn
+          "Nobody in this room wants wheat, and I'm not paying to move it. I'll sit on it — come see me when your build stalls."
+  BLUE    offer 1 ore for 1 brick
+          "One ore, straight across for one brick — I need to get a build down and ore's the one nobody rolls when they need it. Whoever shakes first gets first call on my next favour, and you all know I pay those back."
+  BLUE    offer 1 ore for 1 brick
+          "Red, this one's written for you — you've got brick under that settlement and not a single ore tile on the board, so ore straight across for brick and I owe you one later. Orange, same deal stands if you'd rather move a brick than sit on it."
+  BLUE    buy a development card
+          "Nobody wants to move a brick, so I'll buy my luck instead — my cards are still on the table the second anyone changes their mind."
+  ORANGE  buy a development card
+  ORANGE  end your turn
+  GREY    roll the dice
+          "Happy to swap a sheep for brick or wheat if anyone's got a spare."
+  GREY    [unusable reply: the reply was cut off: the token limit ran out while the model was still reasoning]
+  GREY    offer 1 sheep for 1 brick
+          "Still offering a sheep — brick or wheat works, I'm not picky. First taker gets it."
+  GREY    offer 1 sheep for 1 brick
+          "One sheep on the block for a brick — if you'd rather move wheat, I'll listen to that too."
+  GREY    end your turn
+          "Nobody biting on the sheep, fair enough — I'll sit tight and try again next turn."
+  RED     offer 1 wheat for 1 sheep
+          "Grey, I'll take that sheep off your hands — one wheat, one sheep, and we're square."
+  ORANGE  reject the offer on the table
+          "I'll pass."
+  GREY    accept the offer on the table
+          "Deal, RED — wheat's welcome."
+  RED     close the trade with GREY
+          "Done, Grey — sheep for wheat, clean and simple. Anyone sitting on spare wood, I'm listening."
+  RED     offer 1 wheat for 1 wood
+          "One wheat for one wood, straight up — wheat's the shortest stack in the bank and wood isn't, so that's a favour to whoever moves. I'll do it once, not twice."
+  BLUE    reject the offer on the table
+          "Wood's the one card I can't spare right now, Red — but I'll do you a straight wheat for brick instead, and that's a fair swap both ways. Anyone else holding brick and wanting wheat, same offer stands."
+  ORANGE  reject the offer on the table
+          "Pass."
+  GREY    reject the offer on the table
+          "Appreciate the offer, Red, but wood's my scarcest card so I'll hold it. I'd rather flip you a sheep for a brick — that's the one piece I'm missing for a settlement."
+  RED     end your turn
+          "Nothing doing on wood or brick, so I'll sit on my hand and let the table come to me. I still need both — a wheat is available for either, and I remember who helps when I'm short."
+  BLUE    play a knight
+          "Time to put this knight to work — Orange, that stack of yours has been calling my name, and wheat's where I'm parking the robber. Still hunting brick and sheep for my next settlement; Grey, you've been straight with me before, so I'll come to you first."
+  BLUE    move the robber to (1, -2, 1), stealing from ORANGE
+          "Robber sits on the wheat 8, Orange — that stack of yours was too tempting. Still hunting brick and sheep for my next settlement, and I pay fair to whoever moves first."
+  BLUE    offer 2 wheat for 1 brick
+          "Two wheat for one brick — that's over the odds and I know it, but I want to move and I'd rather pay a person than the bank. Take it and I'll remember it when you're the one short."
+  BLUE    offer 2 wheat for 1 brick, 1 sheep
+          "Two wheat for one brick and one sheep — I'm paying over the odds so I can actually build, and I'd rather pay a person than the bank. Grey, Red, whoever's holding both to spare, you're doing me a solid and I don't forget that."
+  BLUE    end your turn
+          "No bites, so I'll hold my cards and roll — the two-wheat-for-a-brick-and-a-sheep offer stands next turn for anyone who wants to move."
+  ORANGE  play a knight
+          "That tile was feeding me. I'm moving it."
+  ORANGE  move the robber to (1, 0, -1), stealing from GREY
+          "Robber's off my wheat. Ore looked busy."
+  ORANGE  buy a development card
+  ORANGE  end your turn
+  GREY    [unusable reply: the reply was cut off: the token limit ran out while the model was still reasoning]
+  GREY    roll the dice
+          "Let's see what the dice bring."
+  GREY    offer 2 sheep for 1 wheat, 1 ore
+          "I've got extra wool burning a hole in my hand. 2 sheep for 1 ore and 1 wheat, anyone?"
+  ORANGE  reject the offer on the table
+          "Not what I need."
+  GREY    buy a development card
+          "Might as well see what the deck's holding — card, please."
+  GREY    offer 2 sheep for 1 brick, 1 wheat
+          "Still swimming in wool over here. Two sheep to whoever can spare me a brick and a wheat."
+  GREY    end your turn
+          "Wool's still cheap, friends — one brick and one wheat for two sheep, any time. Otherwise roll away."
+  RED     offer 2 wheat for 1 wood, 1 brick
+          "Two wheat on the table for one wood and one brick. That's a real offer, not a fire sale — I'm not giving wheat away for wool I don't need."
+  RED     offer 3 wheat for 1 wood, 1 brick
+          "Two wheat moved nobody, so here's the raised bid: three wheat for one wood and one brick — that's the top of my market, not the opening. Orange, you're the one holding both."
+  RED     end your turn
+          "Three wheat for one wood and one brick still stands, Orange — I'll leave it right there on the table. I'm not going to the bank at four-for-one just to save you the trouble."
+  BLUE    offer 2 wheat for 1 brick
+          "I've got wheat piling up and I only need one brick to get a settlement down — two wheat for one brick, and I'll remember who helped me build."
+  BLUE    end your turn
+          "Two wheat for one brick still stands, first taker gets a good deal and a favour I'll remember. I'd rather build with a friend than at four-for-one."
+  ORANGE  roll the dice
+  ORANGE  end your turn
+  GREY    roll the dice
+          "Rolling — let's see if the dice are kind."
+  BLUE    discard 1 wheat
+          "Shedding some wheat here — still looking to swap wheat for brick if anyone's holding."
+  BLUE    discard 1 wheat
+          "Another wheat off the pile — still happy to swap wheat for brick once we're back to building."
+  BLUE    discard 1 sheep
+          "Shedding a sheep this time — my two-wheat-for-a-brick offer still stands if anyone's holding."
+  BLUE    discard 1 wheat
+          "One wheat down — my two-wheat-for-one-brick offer still stands, and I don't forget who deals fair."
+  BLUE    discard 1 wood
+          "Tossing a wood to the tax — my two-wheat-for-one-brick offer still stands."
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 sheep
+  GREY    move the robber to (-1, 1, 0), stealing from RED
+          "Robber's moving off my ore and onto some wood — Red, that's just where the dice say it hurts most. Still in the market for brick or wheat if anyone's buying wool."
+  GREY    offer 2 sheep for 1 brick
+          "I've got wool coming out of my ears and I need brick — two sheep for one brick, first taker gets a good deal."
+  GREY    offer 2 sheep for 1 brick
+          "Orange, you're sitting on wood, wheat and ore but not a scrap of wool — two sheep for one brick, and you can actually build something this turn."
+  GREY    play road building
+          "I'll lay some free road and see if I can open up a good spot."
+  GREY    build a road on edge (22, 23)
+          "Laying the free road out toward the ore and sheep — still short one brick if anyone's feeling generous."
+  GREY    build a road on edge (23, 52)
+          "Laying road toward the port — still one brick short of a proper build if anyone's sitting on spares."
+  RED     offer 3 wheat for 1 wood, 1 brick
+          "Three wheat on the table for one wood and one brick — that beats what the bank will hand you for wheat, and I only want the pair. First one to bite gets a builder's start."
+  RED     offer 3 wheat for 1 wood, 1 brick
+          "Three wheat for one wood and one brick, back on the table — two cards for what the bank charges you for one. Orange, you're the only one sitting on both; say the word and I'll remember who dealt straight with me."
+  RED     end your turn
+          "No takers on the wheat, so I'll hold it — I'm not donating four cards to the bank for one. Offer's dead; door's open if someone actually wants to deal."
+  BLUE    offer 2 wheat for 1 brick
+          "Two wheat for one brick — better than the bank gives you for wheat and I only want the single brick. I'm one brick from a settlement, so first one to bite gets a favour owed."
+  BLUE    buy a development card
+          "No takers on the wheat, so I'll stop pressing and go dig for cards myself. Door's still open — whoever brings me a brick gets paid well for it."
+  BLUE    offer 1 wood, 1 wheat for 1 brick
+          "One wood and one wheat for a single brick — two cards for one, better than the bank will treat you. I build the second it lands, and I pay back people who deal with me."
+  ORANGE  roll the dice
+  ORANGE  end your turn
+  GREY    roll the dice
+          "Rolling. If anyone's got spare brick, name your price — I'll make it worth your while."
+  GREY    offer 2 sheep for 1 brick
+          "Two sheep for one brick, straight up — if you're sitting on brick you're doubling your money on a common good."
+  GREY    offer 1 sheep, 1 ore for 1 brick
+          "Still one brick short over here. New deal: one sheep and one ore for a single brick — two cards for one, and I'll take the first yes I get."
+  GREY    play a knight
+          "Fine — if nobody's selling brick, I'll go find one myself."
+  GREY    move the robber to (2, -2, 0), stealing from ORANGE
+          "Robber's moving to ORANGE's brick pit — nothing personal, but you're the one sitting on the brick I need."
+  GREY    upgrade node 22 to a city
+          "Looks like nobody wanted my cards, so I'll just grow my own engine — putting a city up right here."
+  RED     offer 1 wheat for 1 brick
+          "One wheat, one brick, straight up. I know brick's sitting in hands out there — first one to say yes gets the wheat."
+  RED     offer 2 wheat for 1 brick
+          "One-for-one got no takers, so here's my real number: two wheat for a single brick. First yes takes it."
+  RED     trade 4 wheat to the bank for 1 brick
+          "Fine — I'll pay the bank's freight rather than beg. Whoever was holding out just watched me build anyway."
+  RED     build a settlement at node 32
+          "Port's mine now — three-for-one beats begging this table for anything. Good luck finding your bricks, GREY."
+  BLUE    roll the dice
+          "Rolling — and to whoever's sitting on a brick: I'll pay over the odds for one, wood and sheep are on the table."
+  BLUE    offer 2 wood for 1 brick
+          "Two wood for one brick, straight up, right now — I'm overpaying and I'll say so when you need a favour back."
+  BLUE    offer 2 wood, 1 sheep for 1 brick
+          "Two wood and a sheep for one brick — that's me paying well over the odds because I need to keep building. First yes gets it, and I remember who helped when they come asking."
+  BLUE    play a knight
+          "No takers on the brick, so I'll go get one the old way — GREY, nothing personal, your brick tile just looks good from here. My wood-and-sheep offer stands for next turn if anyone changes their mind."
+  BLUE    move the robber to (0, 1, -1), stealing from GREY
+          "GREY, nothing personal — I still need one brick and your hill was the closest thing to it. Same goes for the whole table: two wood and a sheep for a single brick, standing offer."
+  BLUE    buy a development card
+          "Enough haggling over brick — I'll take my chances with the deck. Two knights down already, and I like my odds on a third."
+  BLUE    buy a development card
+          "Sticking to my word — deck it is. A knight here and largest army's mine, and I'll remember the table didn't help me get there."
+  BLUE    trade 4 wood to the bank for 1 brick
+          "Bank's brick beats no brick — I'll pay the 4:1. If anyone's holding wheat and wants sheep, I'm still listening."
+  ORANGE  roll the dice
+  ORANGE  end your turn
+  GREY    trade 4 sheep to the bank for 1 brick
+          "Got sheep coming out my ears over here — if anyone's holding spare wheat or brick, I'm happy to swap before the bank takes its cut."
+  GREY    offer 2 sheep for 1 wheat
+          "Two fat sheep for a single wheat — I'm wool-drowned over here, and you'd be doing me a real favour. Any taker?"
+  ORANGE  accept the offer on the table
+          "Alright, done."
+  RED     reject the offer on the table
+          "Two sheep for my only wheat? That's my whole hand, GREY. Three sheep and it's yours — you said yourself you're drowning in them."
+  GREY    close the trade with ORANGE
+          "Done, ORANGE — the sheep are yours, and thanks. Sorry RED, three's too steep when two already gets it done."
+  GREY    build a settlement at node 52
+          "Wood, brick, wool, wheat all lined up — I'll take the little port corner at 52. Nothing personal, just good real estate."
+  GREY    end your turn
+          "Empty-handed this turn, so I'll just pass and let the dice do the work."
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wheat
+  ORANGE  discard 1 sheep
+  RED     move the robber to (-1, 0, 1), stealing from ORANGE
+          "Robber goes on the wood, ORANGE — you're holding the fattest hand at this table, so I'll take my chances there."
+  RED     end your turn
+  BLUE    play a knight
+          "Calling up my third knight — that's largest army, so I'll take it and move this robber off my own wood. I'd still much rather trade than fight: anyone holding spare wheat, I'll pay a sheep for it."
+  BLUE    move the robber to (1, -2, 1), stealing from ORANGE
+          "Robber sits on the wheat eight — sorry, Orange and Red, but that's the board talking. My standing offer holds: a sheep for your wheat, first taker gets it."
+  BLUE    build a road on edge (17, 39)
+          "Road heading up toward the wood port — my sheep-for-wheat offer still stands, and I'll gladly swap a sheep for a brick too. Whoever deals with me now, I remember who helped when I was short."
+  BLUE    offer 1 sheep for 1 brick
+          "One brick is all that stands between me and a new settlement — I'll hand over a sheep for it, straight up. Grey, Red, Orange: whoever takes it, I'll remember the favour when you come knocking."
+  ORANGE  reject the offer on the table
+          "Not this time."
+  BLUE    offer 2 sheep for 1 brick
+          "Two sheep for a single brick — I know that's overpaying, and I'm doing it on purpose because I want that port settled this turn. Red, Orange, whoever bites: I pay my debts, and I remember who bailed me out."
+  ORANGE  reject the offer on the table
+          "I'll hold onto it."
+  ORANGE  roll the dice
+  ORANGE  play a knight
+          "That robber's been on my wheat long enough — moving it."
+  ORANGE  move the robber to (1, 0, -1), stealing from BLUE
+          "Ore nine closes up for now, Blue — I'll take a card while I'm here."
+  ORANGE  end your turn
+  GREY    end your turn
+          "One sheep to my name, so I'll just pass — though I'd not mind that robber wandering off my ore nine sometime soon."
+  RED     offer 2 wood for 1 ore
+          "Two wood for a single ore — that's me being generous, and it lasts exactly as long as this turn does."
+  ORANGE  accept the offer on the table
+          "Fine. Take the ore."
+  RED     close the trade with ORANGE
+          "Good. Wood for ore, done."
+  RED     offer 2 wood for 1 ore
+          "Wood's still moving at the same rate while my turn lasts — two for one ore, and I'll stop pestering the table about it."
+  BLUE    roll the dice
+          "Orange, that knight cost me a sheep and my ore — I'd rather trade than feud, so let's deal. Anyone holding brick: come see me, I pay over the odds, and I keep a long memory for who deals straight and who doesn't."
+  BLUE    offer 1 wood for 1 brick
+          "Anyone holding a spare brick: wood's on the table for it, straight swap. Deal with me now and I remember it — I pay my debts and I pay them well."
+  ORANGE  reject the offer on the table
+          "Not this time. I'm fine on wood."
+  BLUE    play road building
+          "Fair enough, Orange — no hard feelings, but I keep score. I'll build my own roads instead, and my offer for a brick still stands for anyone who wants to deal straight."
+  BLUE    build a road on edge (17, 18)
+          "Road's down on good ground. Still short one brick — I've got wood and sheep to move and I pay over the odds for anyone who deals straight with me."
+  BLUE    build a road on edge (38, 39)
+          "No brick sellers at this table, so I'll build my own route to the port — road's down, and once I'm on that wood harbour my spare wood buys whatever I'm short of. Anyone who deals straight with me still gets first call on my trades."
+  BLUE    offer 1 wood, 1 sheep for 1 brick
+          "Wood and sheep for a single brick — that's me paying over the odds because I need it to close out a spot. Whoever deals straight with me now gets first call on everything I'm moving after."
+  ORANGE  reject the offer on the table
+          "No, I'll sit this one out."
+  ORANGE  end your turn
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 brick
+  GREY    move the robber to (-1, 0, 1), stealing from BLUE
+          "Moving the robber to the wood 6, and I'll take a card from BLUE."
+  GREY    offer 2 wheat for 1 wood, 1 brick
+          "Got wheat coming out my ears over here — two wheat for a wood and a brick, who's in?"
+  ORANGE  reject the offer on the table
+          "Not for me."
+  GREY    trade 3 wheat to the bank for 1 wood
+          "Fine, port it is — three wheat for a wood. Any brick out there, I'm still buying."
+  GREY    end your turn
+          "Nothing to build this turn — I'm one brick shy of a new settlement, so if you're sitting on brick, remember me next round."
+  RED     offer 2 wood for 1 ore
+          "Wood's stacking up on my side of the table. Two wood for one ore — that's the rate while it lasts, and I don't usually post it twice."
+  RED     end your turn
+          "Two wood for one ore is still the rate while I'm holding it — I'm in no hurry, but that's the price."
+  BLUE    offer 2 sheep for 1 brick
+          "Grey, dropping the robber on my wood and lifting my wheat was a cheap shot when I'd have dealt with you straight — noted. That said, table's open: two sheep for one brick, and I'll remember who helped."
+  ORANGE  reject the offer on the table
+          "Not today, Blue."
+  BLUE    offer 1 wood, 2 sheep for 1 brick, 1 wheat
+          "I still need a brick and a wheat to close out a settlement — one wood and two sheep for the pair, three cards for two, and I won't ask a third time. Fair dealers get remembered at this table, and so do the refusals."
+  ORANGE  reject the offer on the table
+          "No, thanks."
+  ORANGE  move the robber to (2, 0, -2), stealing from GREY
+  ORANGE  end your turn
+  GREY    trade 3 wheat to the bank for 1 brick
+  GREY    build a road on edge (52, 53)
+          "That road down to the 3:1 port makes my line the longest on the board — five in a row."
+  GREY    end your turn
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 brick
+  ORANGE  discard 1 wheat
+  ORANGE  discard 1 sheep
+  RED     move the robber to (1, 0, -1), stealing from BLUE
+          "That ore's been feeding two of you long enough. I'll take a look at Blue's hand while I'm here."
+  RED     trade 3 wood to the bank for 1 ore
+          "Took the sure thing off my port rather than beg you lot for ore again. Anyone wants to beat 3:1, you know where to find me."
+  RED     end your turn
+          "I'll sit. My port's still open, but I'm done chasing — if you want my wood, you know the price."
+  BLUE    offer 1 wood, 2 sheep for 1 brick, 1 wheat
+          "Red, you lifted a wood off me but I'll let bygones be bygones if you sell me a brick — one wood and two sheep for a brick and a wheat, and that's a rate nobody else at this table will match."
+  ORANGE  reject the offer on the table
+          "Not for me."
+  RED     reject the offer on the table
+          "Brick and wheat are exactly the two cards that finish your settlement, Blue — you won't get either off me for sheep. Wood and a sheep for an ore; that's my counter, take it or take your chances."
+  BLUE    end your turn
+          "Fair enough, Orange — and Red, my wood-and-sheep offer stands if you change your mind; I'd rather buy from you than from the bank. Passing for now, but my door's open."
+  ORANGE  end your turn
+  GREY    offer 2 sheep for 1 wood, 1 wheat
+          "Sheep are falling out of my ears over here — two of them for a wood and a wheat, someone help me out."
+  ORANGE  reject the offer on the table
+          "Not for me."
+  RED     reject the offer on the table
+          "Sheep I've already got — I've been shearing my own. Make it an ore and a sheep for the wood and wheat, and we've got a deal."
+  GREY    offer 3 sheep for 1 wood, 1 wheat
+          "Red, I've got no ore to trade — but here's a sweeter one: three sheep, all yours, for one wood and one wheat. Anybody at the table."
+  ORANGE  reject the offer on the table
+          "Still no."
+  RED     reject the offer on the table
+          "Three sheep won't buy my wood and wheat — I'm already drowning in wool. Bring me ore instead of more sheep and we'll do business."
+  GREY    trade 3 sheep to the bank for 1 wood
+          "Fine, I'll take the bank's rate on wood — but my sheep are still on the table for anyone who wants wheat or wood."
+  GREY    build a road on edge (24, 53)
+          "Laying a road out toward the brick corner — still short a wood and a wheat, and I've got brick to move for them."
+  RED     trade 3 sheep to the bank for 1 ore
+          "Three wool for a rock at the bank — sheep are cheap, ore isn't, so that's the going rate. Somebody's city is coming."
+  RED     upgrade node 10 to a city
+          "City goes up on the wheat-and-wood corner — nobody would bring me ore, so I just built my own."
+  RED     offer 1 wood, 1 brick for 1 wheat, 1 ore
+          "I've got wood and brick to move. I'll swap a wood and a brick for an ore and a wheat — somebody with a quarry and a field should take that."
+  RED     offer 1 wood, 1 brick for 1 wheat, 1 ore
+          "Orange — you've got the ore and the wheat, I've got wood and brick to move. A wood and a brick for your rock and your grain, straight up. That's the price; I'm not throwing a sheep on top of it."
+  RED     end your turn
+          "Offer's still on the table — an ore and a wheat for my wood and brick. If nobody bites, no hard feelings; I'll just sit on my cards and wait."
+  BLUE    offer 3 sheep for 1 brick, 1 wheat
+          "I've got wool coming out of my ears here — three sheep for a brick and a wheat, straight up. Whoever helps me out, I'll remember it when you're the one short."
+  ORANGE  reject the offer on the table
+          "Sheep won't build me anything. I'll pass."
+  RED     reject the offer on the table
+          "Three wool is an opening bid, Blue, not a price. I'll move you the brick and the wheat — but one of those sheep comes back as rock, and then we're talking."
+  BLUE    offer 1 wood, 3 sheep for 1 brick, 1 wheat
+          "Red, I'd take your counter in a heartbeat but there's no rock in my hand at all — so here's my best: three wool and a log for a brick and a grain. That's more than fair and whoever takes it gets paid back when they're the one short."
+  ORANGE  reject the offer on the table
+          "Wool still doesn't build me anything. Pass."
+  RED     reject the offer on the table
+          "Three wool doesn't build me anything either, Blue — that's the same answer Orange gave you. My grain's spoken for; a city's the only move left to me, so bring me rock or don't bother."
+  BLUE    trade 4 sheep to the bank for 1 brick
+          "Bank trade it is — I'll take the brick. Wool's clearly not currency here today."
+  BLUE    end your turn
+          "Sitting tight this turn — my woodpile's getting tall, so if anyone wants two logs for a brick, I'm your man."
+  ORANGE  end your turn
+  GREY    move the robber to (1, -2, 1), stealing from RED
+          "That wheat was feeding Red's city, and truth be told the robber was squatting on my own ore — glad to move it somewhere more useful."
+  GREY    offer 1 brick, 1 sheep for 1 wood, 1 wheat
+          "I've got brick and sheep to spare and could really use a wood and a wheat — anyone up for a straight swap? Happy to make it worth your while."
+  ORANGE  reject the offer on the table
+          "No thanks, I'll sit this one out."
+  RED     reject the offer on the table
+          "You lifted a brick off my tile this turn, Grey, so the price went up — one wood costs you a brick and a sheep now, and that's me being generous."
+  GREY    offer 2 brick, 1 sheep for 1 wood, 1 wheat
+          "I'll pass on that, Red. Two brick and a sheep are on the table for a wood and a wheat — Blue, that's a lot of brick you don't have."
+  ORANGE  reject the offer on the table
+          "Not this time."
+  RED     reject the offer on the table
+          "Wood and wheat together is a settlement sitting in your hand, Grey, so three cards for two isn't the deal. Throw an ore on top of the two brick and the sheep and it's done."
+  GREY    [unusable reply: the reply was cut off: the token limit ran out while the model was still reasoning]
+  GREY    [fell back] trade 3 brick to the bank for 1 sheep
+  GREY    end your turn
+          "I'll hold here — if anyone's sitting on extra wood or wheat, come find me, I've got sheep to move."
+  RED     offer 1 wood for 1 ore
+          "Grey, you've been begging for wood two turns running and I've got it. One wood for one ore, straight up — that's the whole offer, and I'm not dressing it up with anything else."
+  RED     offer 2 wood for 1 ore
+          "Two wood for one ore, Grey — you've chased timber all game and I'm finally shifting off my last number. Take it or I'm done haggling and doing business with the bank instead."
+  RED     trade 3 wood to the bank for 1 ore
+          "Two offers, Grey, and not a word back — so I banked the timber instead. The wood's spoken for now."
+  RED     buy a development card
+          "Two turns of chasing my timber and not a word back, Grey — so I'll let the deck settle this one myself."
+  BLUE    offer 2 wood for 1 brick, 1 wheat
+          "Two timber on the table for one brick and one wheat — I'm sitting on a woodpile and I'll pay over the odds to get moving. Orange, Red, you both pull brick; whoever deals straight with me gets first call on my next favour."
+  ORANGE  reject the offer on the table
+          "No."
+  RED     reject the offer on the table
+          "Two for two, Blue — and you're asking for the exact two cards that get you building, so the price isn't two. Put an ore in with that woodpile and I'll deal; otherwise my wheat stays mine."
+  BLUE    offer 2 wood, 1 ore for 1 brick, 1 wheat
+          "Deal, Red — you named a price and it's fair, so I'm paying it. That gets me building this turn, and I remember who moved when it counted."
+  RED     accept the offer on the table
+          "That's the number I named and you hit it — send over the timber and ore, the brick and wheat are yours. You moved when it counted, Blue; I'll remember that when I come asking."
+  BLUE    close the trade with RED
+          "Done, Red — the timber and ore are yours, and that's two straight deals from you today; I keep a ledger and your side of it reads well. Orange, a flat no is your right, but I'll spend my favours where the door opens."
+  BLUE    build a settlement at node 39
+          "Setting up on the wood port at 39 — I've got timber to spare, and I'll trade it cheap to anyone who's dealt straight with me."
+  BLUE    build a road on edge (37, 38)
+          "Road's going down off 39 toward the wood coast at 37 — I'll be building there soon, and Red stays first in line for my favours. Anyone who wants timber off my port, my door's still open."
+  ORANGE  end your turn
+  GREY    offer 2 sheep for 1 wood
+          "Six sheep in hand and not a thing to build with them — two sheep for a wood, and I'll pay the same rate for brick or wheat."
+  BLUE    accept the offer on the table
+          "Done — sheep for wood, and we both get moving. Grey, you've been straight with me at this table."
+  ORANGE  reject the offer on the table
+          "No thanks — I'll sit on what I've got."
+  RED     reject the offer on the table
+          "Two sheep is an opening bid, Grey, not a price — and I'm not the one sitting on six cards he can't use. Make it three sheep for the wood and we've got a deal."
+  GREY    close the trade with BLUE
+          "Deal, BLUE — two sheep for the wood. RED, three sheep was never the price."
+  GREY    offer 2 sheep for 1 brick
+          "Two sheep for one brick — sheep I've got in spades, brick I haven't. If brick's short, wheat works just as well for me."
+  ORANGE  reject the offer on the table
+          "Not this time."
+  GREY    trade 3 sheep to the bank for 1 brick
+          "Fine, I'll pay the bank's rate rather than haggle — three sheep for a brick. And BLUE, that road of yours is five long; I noticed."
+  GREY    build a road on edge (24, 25)
+          "Seven on the road now, and the sheep port waiting at the end of it — better use of my last wood than another wool blanket. Still buying wheat with sheep, if anyone's short of wool."
+  RED     roll the dice
+          "Roll first, spend second — let's see what the dice owe me before I go shopping. Grey, your wool's still all yours."
+  RED     offer 1 wood for 1 brick
+          "Wood's the coin of the realm at this table, so I'll part with one — a wood for a brick, straight up. First taker gets it, and I won't be sweetening it later."
+  ORANGE  reject the offer on the table
+          "Not this time, Red."
+  RED     end your turn
+          "Nothing to build and nobody buying — I'll take my chances with the dice. The wood's still here when someone's ready to talk like they mean it."
+  BLUE    offer 1 sheep for 1 brick
+          "One sheep, one brick, straight up — somebody's got a spare brick they aren't building with. Deal fair with me and I remember it when you come knocking."
+  ORANGE  reject the offer on the table
+          "No, Blue. Not buying."
+  BLUE    offer 1 ore for 1 brick
+          "One ore for one brick — I've got ore coming out my ears and not a brick to my name. Fair deal, and I'll remember who helped me build."
+  ORANGE  accept the offer on the table
+          "Alright, Blue — one brick for one ore."
+  BLUE    close the trade with ORANGE
+          "Pleasure doing business, Orange — that brick's going straight into a settlement. You came through when I needed it, and I don't forget that."
+  BLUE    build a settlement at node 18
+          "That brick did its job, Orange — I'm settling at 18 for the bigger production. Anybody wanting to swap, my door stays open and I pay it back."
+  ORANGE  buy a development card
+  ORANGE  end your turn
+  GREY    offer 2 sheep for 1 wood, 1 wheat
+          "Two sheep on the block for a wood and a wheat — save yourselves the bank's 3:1 and I'll owe you one."
+  BLUE    reject the offer on the table
+          "Two sheep doesn't move me, I've already got sheep coming in — but I'd happily swap you my wood for an ore, straight up. You get the wood you're after and I get to chase a city, and I'll remember the fair dealing."
+  ORANGE  reject the offer on the table
+          "I'll sit this one out."
+  RED     reject the offer on the table
+          "Sheep's the one thing I've already got in spades, GREY — you're offering me my own problem back. If you actually want my wood it's one wood for an ore and a wheat, and honestly I'm not in a hurry either way."
+  GREY    offer 2 sheep, 1 ore for 1 wood, 1 wheat
+          "ORANGE, you don't pull a single sheep off your numbers and I'm buried in them — two sheep plus an ore for a wood and a wheat, straight across. Anyone at the table can take it, but it fits you best."
+  BLUE    accept the offer on the table
+          "Deal, Grey — wood and wheat are yours. That ore puts me closer to a city, and I remember who trades straight with me."
+  ORANGE  accept the offer on the table
+          "Fine. Wood and wheat are yours."
+  RED     reject the offer on the table
+          "You're offering me my own sheep back, GREY — I've got three already. My wood moves for an ore and a wheat, nothing else, and I'm not the one sweating here."
+  GREY    close the trade with ORANGE
+          "ORANGE, let's close it — wood and wheat to you, two sheep and an ore to me. BLUE, no slight meant, I just don't want to arm the guy I'm tied with."
+  GREY    build a settlement at node 25
+          "I'll take that sheep port before someone else does — I'm drowning in wool over here. Still buying wood and wheat if anyone's selling."
+  RED     play year of plenty for wheat, ore
+          "GREY, you shopped around me to BLUE last turn — I noticed. I'm not selling wood into this table today anyway, so save the sheep."
+  RED     upgrade node 5 to a city
+          "City goes up on the wood-and-wheat corner. GREY, keep shopping — you'll still be short of me when the dust settles."
+  RED     offer 2 wood for 1 wheat, 1 ore
+          "Here's a clean one, no games: two wood for a wheat and an ore. Wood does nothing for me, but I know it does something for you lot. Fair value once, and if it sits I'll just bank it and remember who was hoarding."
+  ORANGE  reject the offer on the table
+          "No thanks, RED. Wood's not what I'm short of."
+  RED     offer 2 wood for 1 ore
+          "GREY, you've been telling the whole table you're buying wood — so here's two for one ore, straight up, no haggling. That's me making it easy on you, not me getting soft."
+  ORANGE  reject the offer on the table
+          "Still no, RED — wood's dead weight in my hand."
+  GREY    accept the offer on the table
+          "Deal, RED — two wood for the ore. First straight rate anyone's offered me all game, so I'll take it."
+  RED     close the trade with GREY
+          "Done, GREY — two wood for the ore. You wanted wood, I wanted ore, and I can live with a straight deal."
+  RED     trade 3 sheep to the bank for 1 ore
+          "Three wool to the bank for an ore — cleaner rate than anything this table threw my way today."
+  RED     end your turn
+  BLUE    trade 2 wood to the bank for 1 ore
+          "Quietly using my wood port for an ore — nobody has to lose anything for that. But Grey, Orange, if either of you wants to move wheat or ore for my sheep or a straight rate, I'm at this table to trade, not to hoard."
+  BLUE    buy a development card
+          "Taking a card off the top — my hand's exactly the right shape for it and sitting on it does nothing. Grey, you've been straight with the whole table today; I'll remember that when I've got cards to move."
+  BLUE    end your turn
+          "Nothing left to move this turn — my hand's empty, so no point pretending otherwise. Grey, you've been straight all game; that's worth something to me when I've got cards again."
+  ORANGE  play monopoly on ore
+          "Ore's spread too thin around here. Evening it out."
+  ORANGE  trade 4 wood to the bank for 1 wheat
+  ORANGE  upgrade node 12 to a city
+          "City goes up. That'll do."
+  ORANGE  end your turn
+  GREY    trade 2 sheep to the bank for 1 ore
+          "Sheep are coming out my ears over here — if anyone's sitting on spare ore, come talk to me."
+  GREY    trade 2 sheep to the bank for 1 ore
+          "No takers on ore, so I'll just feed the port — sheep in, ore out."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Sheep goes to wheat this round — no city gets built without it."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Sheep to wheat at the port — one ore and the city goes up."
+  GREY    offer 1 wood, 1 brick for 1 ore
+          "Two for one, wood and brick, for a single ore — somebody make my city real and I'll remember it kindly."
+  ORANGE  accept the offer on the table
+          "Deal."
+  GREY    close the trade with ORANGE
+          "Deal it is — wood and brick are yours, and that ore's going straight into a city."
+  GREY    upgrade node 19 to a city
+          "That ore went straight into a city on my best corner. Blue's sitting on four settlements and an army — somebody else should be watching that too."
+  GREY    end your turn
+          "Nothing doing on my end this turn — but Blue's four settlements and that army should worry everyone at this table more than my one little city."
+  RED     offer 2 wood for 1 sheep, 1 wheat
+          "I've got spare wood and I want sheep and wheat for it — two for two, straight up. I'm not here to do anyone a favour, so make it a real offer or don't bother."
+  RED     end your turn
+  BLUE    offer 2 wood for 1 wheat, 1 ore
+          "Two wood on the table for one ore and one wheat — fair rate for anyone who's been stockpiling those. Grey, you've dealt straight with me all game, so it's yours first if you want it."
+  BLUE    offer 1 wood, 1 sheep for 1 wheat, 1 ore
+          "Orange, you've got no sheep coming in at all, and Red, you keep asking for them. One sheep plus a wood for an ore and a wheat — straight two-for-two, and I'll remember who moved the game with me."
+  BLUE    end your turn
+          "Offers stay open if anyone's got spare ore and wheat to move — otherwise I'm happy to be patient and let my numbers come in."
+  ORANGE  trade 4 brick to the bank for 1 ore
+  ORANGE  end your turn
+  GREY    trade 2 sheep to the bank for 1 ore
+          "Just rebalancing my hand here, nothing to see. Though Blue sitting on largest army and four settlements is what I'd be watching."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Just converting some wool into wheat—nothing exciting. Still keeping an eye on Blue's army."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Just squaring away my wool like I said — nothing worth anyone's attention here. Still Blue's army that worries me."
+  GREY    upgrade node 52 to a city
+          "Just building up my little corner here — nothing to see. Still Blue's army and four settlements that should worry everyone."
+  GREY    end your turn
+          "Nothing more from me this turn — still watching Blue's army and those four settlements."
+  RED     end your turn
+          "Nothing I can build on my side of the board — I'll sit on what I've got."
+  BLUE    trade 4 sheep to the bank for 1 wheat
+          "Grey's one build from ending this, so no cheap gifts heading the leader's way from me. Anyone sitting on spare wheat who wants wood, I'm still listening."
+  BLUE    offer 4 wood for 2 wheat
+          "Four wood for two wheat, straight bank rate, no premium asked. Red or Orange, if you've got spare wheat sitting idle, I'll take it and remember the favor when it's my turn to deal."
+  BLUE    trade 2 wood to the bank for 1 wheat
+          "No takers on the wheat, so I'll just use my own wood port. Red, Orange — I'm still good for fair trades whenever you feel like moving something."
+  BLUE    trade 2 wood to the bank for 1 ore
+          "Grey's one build from closing this out, so I'm cashing wood into ore at my port and staying in the race. Orange, Red — fair trades still stand if either of you wants to move something."
+  BLUE    upgrade node 15 to a city
+          "Cashed in for a city on my wood-sheep corner — I'm at 8 now and not going quietly. Grey's one build out, so if anyone's got spare cards and wants a fair deal, I'm still the friendliest wallet at this table."
+  BLUE    end your turn
+          "No cards in hand, so I'll pass the dice — still open for fair trades once I'm holding something."
+  ORANGE  end your turn
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 wood
+  ORANGE  discard 1 ore
+  ORANGE  discard 1 sheep
+  GREY    discard 1 wood
+  GREY    discard 1 ore
+  GREY    discard 1 sheep
+  GREY    discard 1 sheep
+  GREY    move the robber to (-1, 1, 0), stealing from BLUE
+          "Blue's been running away with the board, so that wood patch can sit quiet for a while."
+  GREY    offer 3 sheep for 2 wheat
+          "Three sheep looking for two wheat — anyone want to bulk up their herd before the board dries up?"
+  GREY    offer 3 sheep for 2 wheat
+          "Three sheep for two wheat, same offer — somebody must be sitting on spare wheat. Help me out and I'll owe you one down the road."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Fine, I'll just shuffle my own flock at the port — but that three-wheat tile is looking lonely, dice."
+  GREY    buy a development card
+          "I'm at nine, so let's let the deck have a say."
+  RED     end your turn
+          "I've got nothing that actually helps me, and I'm not going to hand away my wood just to look busy. Let's see if the table can keep GREY off ten."
+  BLUE    offer 2 sheep for 1 wheat
+          "One wheat short of a city here — 2 sheep for 1 wheat, and I'll remember who helped the table slow GREY down."
+  ORANGE  reject the offer on the table
+          "Keep it. I'm not handing over my wheat."
+  BLUE    offer 2 sheep for 1 wheat
+          "Grey's one point from ten — I'm one wheat from a city, and me at nine is the fastest way to make him sweat. Two sheep for that wheat, and I'll remember who moved the game."
+  ORANGE  reject the offer on the table
+          "Already told you no. Ask someone else."
+  BLUE    trade 4 sheep to the bank for 1 wheat
+          "Fine — I'll pay the bank's rate rather than keep asking. Grey's one point from ten, so somebody at this table has to move, and it's going to be me."
+  BLUE    upgrade node 1 to a city
+          "That's my fourth city — I'm at nine now, same as Grey, and I'd rather be the one who ends this. Orange turned me down twice and I'll remember it, but anyone else who helps me finish gets first call on my favour."
+  ORANGE  end your turn
+  GREY    roll the dice
+          "If anyone's sitting on spare wheat, I'll happily overpay in ore for it — I'm close and I'd rather pay the table than the bank."
+  GREY    play a knight
+          "Knight's coming out — RED's been sitting on a pile, let's have a look at it."
+  GREY    move the robber to (1, -2, 1), stealing from RED
+          "Eleven cards is a lot to be sitting on, RED — let's lighten the load a little."
+  GREY    trade 2 sheep to the bank for 1 wheat
+          "Port's eating two sheep for my first wheat — still need one more. Two brick and an ore on the table for whoever can spare a wheat."
+  GREY    offer 2 brick, 1 ore for 1 wheat
+          "Two brick and an ore on the table for one wheat — well over the odds, and you get to watch me overpay. Someone take it."
+  ORANGE  reject the offer on the table
+  RED     reject the offer on the table
+          "You dropped the robber on me and lifted a sheep an hour ago, GREY, and now you want my wheat to close it out. I'll pass — go beg the bank."
+  GREY    offer 2 brick, 1 sheep, 1 ore for 1 wheat
+          "Two brick, an ore and a sheep for one single wheat — four cards for one. If you're not the one closing this out this turn, take the value before I come to my senses."
+  ORANGE  reject the offer on the table
+          "Not this time."
+  RED     reject the offer on the table
+          "Four cards for the wheat that closes you out? You lifted a sheep off me an hour ago and now you want me to hand you the game — no. Anyone else needs wheat, come with a real offer and we'll talk."
+  GREY    buy a development card
+          "Fine — the table's made its choice. Let's see what the deck has for me."
+  GREY    end your turn
+          "Nothing doing — I'll sit on my cards and let the dice come to me. Still in the market for wheat next turn, at a fairer price."
+  RED     end your turn
+          "No roads worth paving and no wheat for you, GREY — you'll have to roll for it like the rest of us."
+  BLUE    trade 2 wood to the bank for 1 brick
+          "Just banking some wood for brick — got to keep the build moving."
+  BLUE    trade 2 wood to the bank for 1 wheat
+          "Just swapping a little wood for wheat — keeping the build moving."
+  BLUE    build a settlement at node 37
+          "That's the one — good games, everyone."
+
+------------------------------------------------------------------------
+winner: BLUE in 74 turns (7145.6s, 74 offers made)
+  RED     Hard bargainer     deepseek-flash        5 VP   76 calls  1 unusable  0 fallbacks  (20 calls saved)
+  BLUE    Cooperator         deepseek-flash       10 VP   92 calls  0 unusable  0 fallbacks
+  ORANGE  Quiet builder      deepseek-flash        3 VP   94 calls  1 unusable  0 fallbacks
+  GREY    Plain              deepseek-flash        9 VP  105 calls  3 unusable  1 fallbacks  (25 calls saved)
+
+  RED     deepseek-flash       107,785 in  63,360 cached 293,806 out  $0.3853
+  BLUE    deepseek-flash       110,490 in  86,144 cached 379,195 out  $0.4887
+  ORANGE  deepseek-flash       132,146 in  60,800 cached 165,761 out  $0.2389
+  GREY    deepseek-flash       110,966 in  91,520 cached 605,123 out  $0.7600
+          total                                                  $1.8729
+
+replay: /home/pedro/projects/watch-catan/runs/20260924-204029-1d45dd.jsonl

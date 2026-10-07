@@ -1,0 +1,513 @@
+/* Two families, no sans: mono for everything the machine says (numbers, moves,
+   labels) and a serif for everything a player says. The split is the point — a
+   glance separates the record from the rhetoric. */
+
+:root {
+  --paper: #faf8f5;
+  --panel: #f3efe8;
+  --ink: #1a1815;
+  --muted: #6b6560;
+  --rule: #e0dbd4;
+  --accent: #c1440e;
+
+  --red: #b23a2e;
+  --blue: #2f5d9e;
+  --orange: #cf7a22;
+  --white: #cfc6b8;
+  --grey: #5b5853;
+
+  --wood: #5c7a45;
+  --brick: #ad5a3c;
+  --sheep: #9db86e;
+  --wheat: #dcae3d;
+  --ore: #7b8794;
+  --desert: #d8c9a6;
+  --water: #c8d3d8;
+
+  /* The same five resources again, darkened to stay legible as an icon on a
+     panel. The tile colours above are chosen to sit next to each other as large
+     areas; at 13px they turn to mud. */
+  --wood-ink: #46662f;
+  --brick-ink: #9c4e33;
+  --sheep-ink: #6d8a43;
+  --wheat-ink: #b0821f;
+  --ore-ink: #5d6a77;
+
+  --font-text: ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  --font-meta: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, monospace;
+
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.9rem; --s4: 1.6rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14120f; --panel: #1c1a16; --ink: #ece7e0;
+    --muted: #928b83; --rule: #2e2a25; --accent: #e8683a;
+    --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84;
+    --wood: #46603a; --brick: #8c4632; --sheep: #7d9757; --wheat: #b08a2c;
+    --ore: #5f6a76; --desert: #9d8d70; --water: #232d34;
+    --wood-ink: #8fb37a; --brick-ink: #d99b83; --sheep-ink: #b6cf92;
+    --wheat-ink: #e2c479; --ore-ink: #a9b5c2;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14120f; --panel: #1c1a16; --ink: #ece7e0;
+  --muted: #928b83; --rule: #2e2a25; --accent: #e8683a;
+  --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84;
+  --wood: #46603a; --brick: #8c4632; --sheep: #7d9757; --wheat: #b08a2c;
+  --ore: #5f6a76; --desert: #9d8d70; --water: #232d34;
+  --wood-ink: #8fb37a; --brick-ink: #d99b83; --sheep-ink: #b6cf92;
+  --wheat-ink: #e2c479; --ore-ink: #a9b5c2;
+}
+
+* { box-sizing: border-box; }
+
+/* An author `display` beats the UA rule for [hidden], and every hidden element
+   here sets one. Without this, `hidden = true` does nothing. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--font-meta);
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(21rem, 29vw, 32rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas: "bar bar" "board side" "transport transport";
+  height: 100dvh;
+}
+
+/* ------------------------------------------------------------------- header */
+
+.bar {
+  grid-area: bar;
+  display: flex; align-items: baseline; gap: var(--s4);
+  padding: var(--s2) var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.identity { display: flex; align-items: baseline; gap: var(--s2); }
+
+h1 {
+  margin: 0;
+  font: 600 0.8rem/1 var(--font-meta);
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+
+.run-name { color: var(--muted); font-size: 0.72rem; }
+
+.now { display: flex; align-items: baseline; gap: var(--s2); margin-left: auto; }
+
+.label {
+  font-size: 0.62rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* The one large number on the page. */
+.turn { font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.dice { display: inline-flex; align-items: center; gap: 5px; font-size: 1rem; }
+.dice .total {
+  font-size: 1.15rem; font-weight: 600;
+  font-variant-numeric: tabular-nums; margin-left: 2px;
+}
+/* A seven is the only roll that does something to everyone at the table. */
+.dice.seven .die-face { stroke: var(--accent); stroke-width: 2; }
+.dice.seven .total { color: var(--accent); }
+
+.prompt {
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.controls { display: flex; gap: var(--s2); align-items: center; }
+
+select, button {
+  font: inherit; font-size: 0.75rem;
+  color: var(--ink); background: var(--panel);
+  border: 1px solid var(--rule); border-radius: 3px;
+  padding: 3px var(--s2); cursor: pointer;
+}
+button:hover, select:hover { border-color: var(--muted); }
+#run-picker.is-live { color: var(--accent); border-color: var(--accent); }
+#run-picker option { color: var(--ink); }
+.ghost { background: none; }
+
+/* -------------------------------------------------------------- icons & dice */
+
+/* The sheet itself is never drawn. Left inline it is still an element in the
+   flow, and an empty <svg> line box pushed the whole page down by 22px. */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.icon {
+  width: 1.05em; height: 1.05em;
+  fill: currentColor; vertical-align: -0.18em;
+  flex: none;
+}
+
+.res-wood { color: var(--wood-ink); }
+.res-brick { color: var(--brick-ink); }
+.res-sheep { color: var(--sheep-ink); }
+.res-wheat { color: var(--wheat-ink); }
+.res-ore { color: var(--ore-ink); }
+
+/* A die is an object, not a surface: bone with dark pips in both themes. Themed
+   to `--paper` it came out black-on-black in the dark theme. */
+.die { width: 1.6em; height: 1.6em; vertical-align: -0.4em; }
+.die-face { fill: #efe9df; stroke: #b9b0a3; stroke-width: 1; }
+.die-pips circle { fill: #211e1a; }
+
+/* -------------------------------------------------------------------- board */
+
+.board-pane {
+  grid-area: board;
+  position: relative;
+  min-height: 0; min-width: 0;
+  padding: var(--s3);
+}
+
+#board { width: 100%; height: 100%; display: block; }
+
+.empty {
+  position: absolute; inset: auto 0 50% 0;
+  text-align: center; color: var(--muted); font-size: 0.8rem;
+}
+.empty code { color: var(--ink); }
+
+.hex { stroke: var(--paper); stroke-width: 2; }
+.hex-water { fill: var(--water); stroke-width: 1; }
+.hex-wood { fill: var(--wood); }
+.hex-brick { fill: var(--brick); }
+.hex-sheep { fill: var(--sheep); }
+.hex-wheat { fill: var(--wheat); }
+.hex-ore { fill: var(--ore); }
+.hex-desert { fill: var(--desert); }
+
+/* Tile art, engraved rather than printed: one ink at low opacity works on all
+   five tile colours and in both themes, where five tuned fills would not. */
+.glyph {
+  color: var(--ink);
+  fill: currentColor;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.token circle { fill: var(--paper); stroke: none; }
+.token-number {
+  fill: var(--ink); font: 600 19px var(--font-meta);
+  text-anchor: middle; dominant-baseline: middle;
+}
+.token .pip { fill: var(--muted); }
+.token-hot .token-number, .token-hot .pip { fill: var(--accent); }
+
+.dock { stroke: var(--muted); stroke-width: 2.5; stroke-dasharray: 5 4; opacity: 0.75; }
+.port .glyph { opacity: 0.85; color: var(--muted); }
+.port-label {
+  fill: var(--muted); font: 600 12px var(--font-meta);
+  letter-spacing: 0.04em; text-anchor: middle; dominant-baseline: middle;
+}
+
+/* Bed, edge, piece — three widths of the same line. The edge is a fixed dark,
+   not a theme token: a piece is an object on a board, and it has to keep its
+   outline on a pale tile and a dark one alike. */
+.road-bed { stroke: var(--paper); stroke-width: 17; stroke-linecap: round; }
+.road-edge { stroke: #2b2621; stroke-width: 13; stroke-linecap: round; opacity: 0.85; }
+.road { stroke-width: 9.5; stroke-linecap: round; }
+.building-bed {
+  fill: var(--paper); stroke: var(--paper);
+  stroke-width: 9; stroke-linejoin: round;
+}
+.building { stroke: #2b2621; stroke-width: 3.2; stroke-linejoin: round; }
+
+.seat-RED { stroke: var(--red); fill: var(--red); }
+.seat-BLUE { stroke: var(--blue); fill: var(--blue); }
+.seat-ORANGE { stroke: var(--orange); fill: var(--orange); }
+.seat-WHITE { stroke: var(--white); fill: var(--white); }
+.seat-GREY { stroke: var(--grey); fill: var(--grey); }
+
+/* What just happened. Announced for one beat, then it is just part of the board. */
+.is-new { animation: arrive 900ms ease-out; }
+@keyframes arrive {
+  from { stroke: var(--accent); stroke-width: 9; }
+  to { stroke-width: 3.2; }
+}
+
+.robber { fill: var(--ink); }
+.robber-halo { fill: var(--paper); opacity: 0.82; }
+
+/* --------------------------------------------------------------------- side */
+
+.side {
+  grid-area: side;
+  display: grid; grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  border-left: 1px solid var(--rule);
+}
+
+.feed-wrap { display: contents; }
+
+/* Four seats around a board, in the corners the hexagon leaves empty. The
+   pointer passes through the container so it never sits over the board. */
+.seats { position: absolute; inset: var(--s3); pointer-events: none; }
+
+.seat {
+  position: absolute;
+  width: clamp(12.5rem, 18vw, 16.5rem);
+  padding: var(--s2) var(--s3);
+  border: 1px solid var(--rule); border-top: 3px solid var(--rule);
+  border-radius: 3px;
+  background: var(--panel);
+  pointer-events: auto;
+  opacity: 0.66;
+}
+
+/* Clockwise from the top left, in turn order. */
+.seat-at-0 { top: 0; left: 0; }
+.seat-at-1 { top: 0; right: 0; }
+.seat-at-2 { bottom: 0; right: 0; }
+.seat-at-3 { bottom: 0; left: 0; }
+
+.seat.is-turn {
+  opacity: 1;
+  border-top-color: currentColor;
+  box-shadow: 0 0 0 1px currentColor;
+}
+.seat.is-winner { border-color: var(--accent); }
+
+.seat-bg-RED { color: var(--red); }
+.seat-bg-BLUE { color: var(--blue); }
+.seat-bg-ORANGE { color: var(--orange); }
+.seat-bg-WHITE { color: var(--white); }
+.seat-bg-GREY { color: var(--grey); }
+
+.seat header { display: flex; align-items: center; gap: var(--s2); }
+
+.chip {
+  width: 10px; height: 10px; border-radius: 2px;
+  background: currentColor; flex: none;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.18);
+}
+
+.who {
+  font-family: var(--font-text); font-size: 0.92rem; color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.vp {
+  margin-left: auto; padding-left: var(--s2);
+  font-size: 1.5rem; font-weight: 600; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.vp small {
+  display: block; margin-top: 2px; text-align: right;
+  font-size: 0.6rem; font-weight: 400; color: var(--muted); white-space: nowrap;
+}
+
+.model {
+  margin: 1px 0 var(--s2) 18px;
+  font-size: 0.62rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.hand {
+  display: flex; gap: var(--s1); margin: 0 0 var(--s2) 18px;
+  padding: 0; list-style: none;
+}
+
+/* A card in hand, not a row in a table: the count sits on the resource. */
+.res {
+  display: flex; align-items: center; gap: 2px;
+  min-width: 2.5rem; padding: 2px 5px;
+  border: 1px solid var(--rule); border-radius: 3px;
+  background: var(--paper);
+  font-size: 0.82rem; font-variant-numeric: tabular-nums;
+}
+.res span { color: var(--ink); font-weight: 600; }
+.res .icon { width: 1.4em; height: 1.4em; }
+.res.zero { opacity: 0.32; }
+.res.zero span { font-weight: 400; }
+
+.counters {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2);
+  margin: 0 0 0 18px;
+  font-size: 0.7rem; color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.counters span { display: inline-flex; align-items: center; gap: 3px; }
+.counters .icon { color: var(--muted); width: 1.2em; height: 1.2em; }
+.counters .zero { color: var(--muted); opacity: 0.5; }
+
+.badge {
+  padding: 0 5px;
+  border: 1px solid currentColor; border-radius: 2px;
+  font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.badge.warn { color: var(--accent); }
+
+/* --------------------------------------------------------------------- feed */
+
+.feed-head {
+  display: flex; align-items: center; gap: var(--s3);
+  padding: var(--s3) var(--s3) var(--s2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.feed-head h2 {
+  margin: 0; margin-right: auto;
+  font: 600 0.62rem/1 var(--font-meta);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+
+.toggle {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 0.62rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); cursor: pointer;
+}
+.toggle input { accent-color: var(--accent); margin: 0; }
+
+.feed {
+  margin: 0; padding: 0 var(--s3) var(--s4); list-style: none;
+  /* Not `scroll-behavior: smooth`: at blitz speed the animation never catches up
+     with the feed, and the list sits several plies behind the board. */
+  overflow-y: auto;
+}
+
+.entry { padding: var(--s1) 0; }
+
+/* A move is the record: quiet, one line, machine voice. */
+.entry.move {
+  display: flex; align-items: baseline; gap: var(--s2);
+  font-size: 0.72rem; color: var(--muted);
+  border-bottom: 1px solid transparent;
+}
+.entry.move .chip { width: 7px; height: 7px; }
+.entry.move .name { font-size: 0.6rem; letter-spacing: 0.08em; }
+.entry.move .act { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entry.move .outcome {
+  margin-left: auto; padding: 0 4px;
+  flex: none; white-space: nowrap;
+  border: 1px solid var(--rule); border-radius: 2px;
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.entry.move .outcome.rolled {
+  display: inline-flex; align-items: center; gap: 3px;
+  border: none; padding: 0;
+}
+.entry.move .outcome.rolled .die { width: 1.55em; height: 1.55em; }
+.entry.move .outcome .total { font-weight: 600; }
+.entry.move .outcome.seven { border-color: var(--accent); color: var(--accent); }
+.entry.move .outcome.seven .die-face { stroke: var(--accent); stroke-width: 2; }
+.entry.move.quirk .act { font-style: italic; opacity: 0.75; }
+
+/* Speech is the subject: it gets the width, the serif, and the space. */
+.entry.speech { margin: var(--s4) 0 var(--s3); }
+.entry.speech .who {
+  display: flex; align-items: baseline; gap: var(--s2);
+  margin: 0 0 3px; font-family: var(--font-meta);
+}
+.entry.speech .name {
+  font-size: 0.62rem; letter-spacing: 0.1em; color: currentColor;
+}
+.entry.speech .act { font-size: 0.7rem; color: var(--muted); }
+
+.entry blockquote {
+  margin: 0 0 3px 16px; max-width: 46ch;
+  font: 400 1.06rem/1.5 var(--font-text);
+  color: var(--ink);
+}
+.entry blockquote::before { content: "\201C"; }
+.entry blockquote::after { content: "\201D"; }
+
+/* What it told itself, beneath what it told the table. */
+.entry .why {
+  margin: 0 0 0 16px; max-width: 52ch;
+  font-size: 0.72rem; line-height: 1.45; color: var(--muted);
+  border-left: 1px solid var(--rule); padding-left: var(--s2);
+}
+
+.kind-pitch .act, .kind-counter .act { color: var(--ink); display: inline-flex; align-items: center; gap: 3px; }
+
+/* The cards on the table in a trade. */
+.card {
+  display: inline-flex; align-items: center; gap: 1px;
+  padding: 1px 4px; margin: 0 1px;
+  border: 1px solid var(--rule); border-radius: 3px;
+  background: var(--paper);
+  font-size: 0.72rem; font-weight: 600; font-variant-numeric: tabular-nums;
+}
+.card .icon { width: 1.1em; height: 1.1em; }
+
+body.hide-moves .entry.move { display: none; }
+body.hide-why .entry .why { display: none; }
+
+/* ---------------------------------------------------------------- transport */
+
+.transport {
+  grid-area: transport;
+  display: flex; align-items: center; gap: var(--s3);
+  padding: var(--s2) var(--s3);
+  border-top: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+.play, .step { min-width: 2.4rem; }
+.play { font-size: 0.9rem; }
+
+#scrub { flex: 1; accent-color: var(--ink); min-width: 6rem; }
+
+.position { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.live {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.62rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+}
+.live::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.25; } }
+
+/* ------------------------------------------------------------------- narrow */
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "bar" "board" "side" "transport";
+    height: auto; min-height: 100dvh;
+  }
+  /* The pane grows with its content here: with a fixed height the seats, which
+     live inside it so they can sit in its corners, overflowed it and landed on
+     top of the conversation. The board keeps the fixed height instead. */
+  .board-pane { height: auto; padding-bottom: 0; }
+  #board { height: 74vw; min-height: 280px; }
+  .seats {
+    position: static; inset: auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2);
+    padding: var(--s3) 0 0;
+  }
+  .seat { position: static; width: auto; min-width: 0; opacity: 1; }
+  /* Five cards and a name have to fit half of a 390px screen. */
+  .seat .model, .seat .hand, .seat .counters { margin-left: 0; }
+  .seat .hand { gap: 2px; }
+  .seat .res { min-width: 0; padding: 2px 3px; }
+  .side { border-left: none; border-top: 1px solid var(--rule); }
+  .feed { max-height: 60vh; }
+  .bar { flex-wrap: wrap; gap: var(--s3); }
+  .now { margin-left: 0; }
+  .transport { position: sticky; bottom: 0; flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-new, .live::before { animation: none; }
+}
