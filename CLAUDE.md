@@ -213,7 +213,13 @@ asked of any model. A win is the one move whose rightness is not a judgement
 call. On 150 positions × 3: deepseek-flash 61%, gpt-5.6-terra 45%, gpt-5.6-luna
 33%, every gap well outside noise; `win_probe.py report` reproduces every number.
 Flash's reasoning is the skill: thinking off or effort `low` lost most wins on a
-5-position preview. Flash has played two matches (18 Sep, one seat; 24 Sep, all
+5-position preview. Those numbers compare each model at its provider's default
+effort, which for DeepSeek is `high`. Re-asked under v4 (2026-10-07, 166 × 1,
+`--any-prompt`): Luna 38% at default, 54% at `high`, Flash 66%; the Flash-Luna
+gap falls from 28 points to 12 (95% 2 to 22). Compare models at matched effort,
+and raise the 4,096-token cap before `high` (5 of 166 were cut off). An answer
+that leaves the win for later is a miss, not a deferral: its reasoning chases a
+slower win. Flash has played two matches (18 Sep, one seat; 24 Sep, all
 four, v4). The prompt's road
 descriptions (the node reached, "nobody may ever settle") point away from the
 winning road; stating what a road does to the longest road is a v4 candidate,

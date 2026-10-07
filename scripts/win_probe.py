@@ -192,7 +192,9 @@ def ask(args):
     if args.only:
         wanted = args.only.split(",")
         positions = [p for p in bundle["positions"] if p["id"] in wanted]
-    if bundle["prompt_version"] != PROMPT_VERSION:
+    # Answers under different prompts are not comparable; a run that crosses
+    # versions must say so, and then needs its own control under the new prompt.
+    if bundle["prompt_version"] != PROMPT_VERSION and not args.any_prompt:
         sys.exit(f"positions were found under prompt v{bundle['prompt_version']}, "
                  f"the prompt is now v{PROMPT_VERSION}")
     models = args.models.split(",")
@@ -224,6 +226,7 @@ def ask(args):
     with out.open("a", buffering=1) as fh:
         fh.write(json.dumps({"kind": "plan", "positions": str(args.positions), "models": models,
                              "samples": args.samples, "jobs": len(jobs), **setting,
+                             "prompt_version": PROMPT_VERSION,
                              "started": time.strftime("%Y-%m-%dT%H:%M:%S%z")}) + "\n")
         print(f"{len(jobs)} calls -> {out}", flush=True)
 
@@ -394,6 +397,8 @@ def main(argv=None):
                    help="turn DeepSeek's thinking mode off (its default is on, at effort high)")
     a.add_argument("--flex", action="store_true",
                    help="OpenAI's half-price tier: slower, and waited out when busy")
+    a.add_argument("--any-prompt", action="store_true",
+                   help="ask positions found under an older prompt version")
     a.add_argument("--out", type=Path)
     r = sub.add_parser("report")
     r.add_argument("answers", nargs="+", type=Path)
