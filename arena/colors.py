@@ -1,4 +1,4 @@
-"""A fifth seat colour, added to Catanatron's closed enum.
+"""Extra seat colours, added to Catanatron's closed enum.
 
 Catanatron's `Color` has four members because Catan seats four. But here a colour
 is an identity, not a seat: a persona keeps its colour across matches so that
@@ -19,7 +19,7 @@ Catanatron upgrade that breaks the trick fails there rather than mid-match.
 
 from catanatron.models.player import Color
 
-EXTRA = ("GREY",)
+EXTRA = ("GREY", "BLACK")
 
 
 def _add(name: str) -> Color:
@@ -40,7 +40,7 @@ for _name in EXTRA:
     _add(_name)
 
 #: The four colours Catanatron ships, which is also a full table. Use this, never
-#: `list(Color)`, wherever code means "every seat": once GREY is registered,
-#: `list(Color)` has five members and the engine will happily deal a five-player
+#: `list(Color)`, wherever code means "every seat": once GREY and BLACK are registered,
+#: `list(Color)` has six members and the engine will happily deal a five-player
 #: game — the board-geometry tests did exactly that, and kept passing.
 FULL_TABLE = (Color.RED, Color.BLUE, Color.ORANGE, Color.WHITE)

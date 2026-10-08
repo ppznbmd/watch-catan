@@ -19,6 +19,8 @@ Six sets of positions, all chosen by the model the first time:
   offer_control answering an offer from anyone else, as many as leader_offer:
                 a change that makes the agent refuse everyone is not the same
                 as one that makes it wary of the leader
+  robber      moving the robber while one opponent leads the others on public
+              points and some legal move steals from it
 
 `--model` asks a different model than the one that played, on the same
 positions: how another model would have handled them, without a match.
@@ -35,6 +37,12 @@ Conditions, one per prompt version (PROMPT_VERSION in arena/prompt.py):
   win_rule      the prompt as it is now, with the win condition stated in the
                 rules. RULES never says how the game is won; the agents aim the
                 robber at the leader but trade with it as readily as with anyone
+  plain_high    the prompt as it is now, seated as Plain, effort 'high'
+  saboteur_high the same, seated as the Saboteur. Whoever played the position,
+                these two differ in the persona alone. Together they are the
+                manipulation check for any match with a saboteur in it: if the
+                model plays both alike, a match would compare two identical
+                tables
 
 The control exists because a model does not answer the same prompt the same
 way twice; without it, any change would be credited to the fix.
@@ -66,7 +74,7 @@ from catanatron.state_functions import (  # noqa: E402
 
 from arena.deciders import DecisionFormatError, ScriptedDecider, make_decider  # noqa: E402
 from arena.env import load_env  # noqa: E402
-from arena.personas import RULES  # noqa: E402
+from arena.personas import ROSTER, RULES  # noqa: E402
 from arena.play import usd  # noqa: E402
 from arena.prompt import AUTHOR_OFFER, PROMPT_VERSION, describe_action  # noqa: E402
 from arena.rebuild import detach, plies  # noqa: E402
@@ -83,6 +91,12 @@ CONDITIONS = {
     "win_rule": {"prompt": "current", "effort": None, "rules":
                  "The first player to reach 10 victory points wins the game at once, "
                  "and everyone else loses."},
+    # 'high' reasons past the default 4,096-token cap: 5 of 166 win-probe
+    # answers were cut off there (2026-10-07).
+    "plain_high": {"prompt": "current", "effort": "high", "persona": "Plain",
+                   "budget": {"max_tokens": 16384, "timeout": 300.0}},
+    "saboteur_high": {"prompt": "current", "effort": "high", "persona": "Saboteur",
+                      "budget": {"max_tokens": 16384, "timeout": 300.0}},
 }
 
 #: Moves that can complete a win inside one turn without the dice or another
@@ -154,7 +168,7 @@ def win_within(game, color, depth) -> bool:
 def find_positions(paths, controls=20, seed=0):
     """Every position in the four sets, each detached so it can be played on."""
     found = {"missed_win": [], "dev_buy": [], "control": [], "road_title": [],
-             "leader_offer": [], "offer_control": []}
+             "leader_offer": [], "offer_control": [], "robber": []}
     control_pool, offer_pool = [], []
     for path in paths:
         for ply in plies(path):
@@ -163,6 +177,12 @@ def find_positions(paths, controls=20, seed=0):
                 bot = ValueFunctionPlayer(ply.action.color).decide(ply.game, ply.legal())
                 (found["leader_offer"] if offer_from_leader(state) else offer_pool).append(
                     (detach(ply), bot))
+                continue
+            if ply.chosen_by == "decision" and state.current_prompt.value == "MOVE_ROBBER":
+                target = leading_opponent(state, ply.action.color)
+                if target and any(a.value[1] == target for a in ply.legal()):
+                    bot = ValueFunctionPlayer(ply.action.color).decide(ply.game, ply.legal())
+                    found["robber"].append((detach(ply), bot))
                 continue
             if ply.chosen_by != "decision" or state.current_prompt.value != "PLAY_TURN":
                 continue
@@ -196,6 +216,22 @@ def offer_from_leader(state) -> bool:
     return all(vp[proposer] > vp[c] for c in state.colors if c != proposer)
 
 
+def leading_opponent(state, me):
+    """The opponent strictly ahead of every other opponent on public points, or
+    None on a tie. The agent's own score is left out: a saboteur in the lead
+    still has someone to stop."""
+    vp = {c: get_visible_victory_points(state, c) for c in state.colors if c != me}
+    top = max(vp.values())
+    leaders = [c for c, v in vp.items() if v == top]
+    return leaders[0] if len(leaders) == 1 else None
+
+
+def robs_leader(state, me, action) -> bool:
+    return (action is not None and action.action_type == ActionType.MOVE_ROBBER
+            and action.value[1] is not None
+            and action.value[1] == leading_opponent(state, me))
+
+
 def takes_win(game, color, action) -> bool:
     """Whether a move keeps the win in reach this turn. An offer does not: it
     spends the move on another player's answer."""
@@ -224,6 +260,9 @@ def ask(decider, ply, bot, which, condition):
     if version == "as_played":
         version = played_version(ply.start)
     user = PROMPT_VERSIONS[version](user)
+    persona = CONDITIONS[condition].get("persona")
+    if persona:
+        system = ROSTER[persona].system_prompt
     rule = CONDITIONS[condition].get("rules")
     if rule:
         # among the rules, before the persona's style, as if it had always been there
@@ -259,6 +298,8 @@ def ask(decider, ply, bot, which, condition):
         out["takes_win"] = takes_win(ply.game, color, action)
     if which == "road_title":
         out["takes_title"] = takes_title(ply.game, color, action)
+    if which == "robber":
+        out["robs_leader"] = robs_leader(ply.game.state, color, action)
     return out
 
 
@@ -274,7 +315,7 @@ def summarize(rows):
         key = (r["set"], r["condition"])
         t = table.setdefault(key, {"n": 0, "unusable": 0, "takes_win": 0, "buys_dev": 0,
                                    "takes_title": 0, "same_as_played": 0,
-                                   "accepts": 0, "counters": 0,
+                                   "accepts": 0, "counters": 0, "robs_leader": 0,
                                    "agrees_with_bot": 0, "usd": 0.0})
         a = r["answer"]
         t["usd"] += r.get("usd") or 0
@@ -283,7 +324,7 @@ def summarize(rows):
             continue
         t["n"] += 1
         for k in ("takes_win", "buys_dev", "takes_title", "same_as_played", "agrees_with_bot",
-                  "accepts", "counters"):
+                  "accepts", "counters", "robs_leader"):
             t[k] += bool(a.get(k))
     return table
 
@@ -291,14 +332,14 @@ def summarize(rows):
 def print_summary(table):
     metric = {"missed_win": "takes_win", "dev_buy": "buys_dev", "control": "same_as_played",
               "road_title": "takes_title", "leader_offer": "accepts",
-              "offer_control": "accepts"}
-    print(f"\n{'set':13s} {'condition':11s} {'answers':>7s}  {'metric':16s} {'rate':>6s}"
+              "offer_control": "accepts", "robber": "robs_leader"}
+    print(f"\n{'set':13s} {'condition':13s} {'answers':>7s}  {'metric':16s} {'rate':>6s}"
           f"  {'= bot':>6s}  {'counters':>8s}  {'unusable':>8s}  {'$':>7s}")
     for (s, c), t in sorted(table.items()):
         m = metric[s]
         rate = f"{t[m] / t['n']:.0%}" if t["n"] else "-"
         bot = f"{t['agrees_with_bot'] / t['n']:.0%}" if t["n"] else "-"
-        print(f"{s:13s} {c:11s} {t['n']:7d}  {m:16s} {rate:>6s}  {bot:>6s}  "
+        print(f"{s:13s} {c:13s} {t['n']:7d}  {m:16s} {rate:>6s}  {bot:>6s}  "
               f"{t['counters']:8d}  {t['unusable']:8d}  {t['usd']:7.4f}")
 
 
@@ -354,7 +395,12 @@ def main(argv=None):
             for s, items in positions.items():
                 if items and model is None:
                     model = items[0][0].seat["model"]
-            deciders[c] = make_decider(model, effort=CONDITIONS[c]["effort"])
+            # One sample per position never reuses a prompt: the saboteur check
+            # (2026-10-08) wrote 1.26M tokens to the cache at 1.25x and read
+            # 3,768 back. At three samples, re-asks read 66-68% from it.
+            deciders[c] = make_decider(model, effort=CONDITIONS[c]["effort"],
+                                       cache_writes=args.samples > 1,
+                                       **CONDITIONS[c].get("budget", {}))
 
     OUT_DIR.mkdir(exist_ok=True)
     tag = "dryrun-" if args.dry_run else ("measure-" if args.measure else "")

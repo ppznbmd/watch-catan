@@ -254,6 +254,26 @@ the frames (not yet asked); whether lying runs longer within a position (17 of
 answers other than the one being counted: a circular split produced a false
 finding here once.
 
+**1e. The saboteur study (2026-10-07/08, done).** Written up in
+`experiments/saboteur-study.md`, every run file listed there; JOURNAL.md,
+*7-8 Oct*. A `Saboteur` persona (BLACK) plays to stop whoever is closest to
+winning and may still win. Six pairs on one seed each, {4 Plain} against
+{3 Plain + Saboteur}, Luna at `high` (pair 201 standard tier, the rest flex),
+run by `scripts/saboteur_study.py` (spending cap; `SEED:Saboteur` plays half a
+pair; `--resume`) and followed with `scripts/follow_study.sh`. Manipulation
+check first, on recorded positions (`experiments/reask-saboteur-check*.jsonl`):
+the first draft refused everyone; the final one refuses the leader 72/72 and
+trades with trailing players as Plain does. Results: the Saboteur scores 2.5
+points below the Plain in its seat (95% −4.7 to −0.3; never above it); the
+other three gain nothing (+0.4); matches run longer in 5 of 6 pairs, +18 turns
+(95% −4 to +40, p = 0.13) — a hint, not established; it won 0 of 6. To confirm
+duration, ~15-20 pairs; six more identical pairs would give +5 to +30, ~$4.50.
+Win rate needs ~41 Saboteur-only matches to tell 10% from 25% (~$16-20,
+60-75 h); deferred by the user. Two matches were cut by reboots and finished
+with `arena.play --resume` (see `resumed_from`); analyses must join the two
+files. Outcome in turns, never minutes. `cost_report` also ignores flex: it
+printed twice the real cost of every flex match; price per call.
+
 **2. Find out why the building gap moved.** In v1 the agents built less than half as much as the bot. Measured
 and unexplained (DESIGN.md, *Why the agents lose to the bot*). It is **not** the
 development cards: a simulation says the agents' dev-card habit wins more, not

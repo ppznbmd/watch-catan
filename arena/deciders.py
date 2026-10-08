@@ -205,14 +205,14 @@ class OpenAICompatDecider:
             api_key=api_key or "unused", base_url=base_url, timeout=timeout, max_retries=2
         )
         self._model = model
-        self._effort = effort
+        self._effort = self.effort = effort
         self._max_tokens = max_tokens
         self._schema_enforced = schema_enforced
         self._token_param = token_param
         # Provider switches the OpenAI SDK has no argument for, such as
         # DeepSeek's {"thinking": {"type": "disabled"}}.
         self._extra_body = extra_body
-        self._service_tier = service_tier
+        self._service_tier = self.service_tier = service_tier
         # Seconds to wait before each new try when flex has no capacity. OpenAI
         # answers that with a 429 it does not bill, and suggests backing off.
         self._flex_waits = flex_waits
@@ -375,7 +375,7 @@ class AnthropicDecider:
 
         self._client = anthropic.Anthropic(**({"api_key": api_key} if api_key else {}))
         self._model = model
-        self._effort = effort
+        self._effort = self.effort = effort
         self._max_tokens = max_tokens
         self.label = label or model
 

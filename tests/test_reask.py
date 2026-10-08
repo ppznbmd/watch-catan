@@ -8,7 +8,7 @@ from pathlib import Path
 
 from catanatron.game import Game
 from catanatron.models.actions import generate_playable_actions
-from catanatron.models.enums import ActionPrompt
+from catanatron.models.enums import Action, ActionPrompt, ActionType
 from catanatron.models.player import Color, RandomPlayer
 from catanatron.players.value import ValueFunctionPlayer
 
@@ -153,3 +153,54 @@ def test_the_win_rule_condition_adds_one_rule_and_changes_nothing_else(tmp_path)
     assert rule not in system and ruled.count(rule) == 1
     assert ruled.replace(f"\n\n{rule}", "") == system
     assert ruled.index(rule) < ruled.index("YOUR STYLE:")
+
+
+def test_the_saboteur_manipulation_check_differs_from_its_control_in_the_persona_alone(tmp_path):
+    """`plain_high` and `saboteur_high` are the manipulation check: whether the
+    model plays a saboteur differently at all. Whoever played the position, both
+    must send the same position under
+    their own persona: if the played persona's style leaked into either, a
+    difference in answers could be that style and not the saboteur's goal."""
+    match = run_match(
+        seats=[(Color.RED, llm_seat(ROSTER["Hard bargainer"], ScriptedDecider(
+                    heuristic_script("trader", rng=random.Random(1)), label="dry-run"))),
+               (Color.BLUE, llm_seat(ROSTER["Cooperator"], ScriptedDecider(
+                    heuristic_script("trader", rng=random.Random(2)), label="dry-run"))),
+               (Color.WHITE, bot_seat(ValueFunctionPlayer))],
+        runs_dir=tmp_path / "runs", seed=9, max_offers_per_turn=3,
+    )
+    ply = next(reask.detach(p) for p in reask.plies(match["path"])
+               if p.chosen_by == "decision"
+               and p.game.state.current_prompt == ActionPrompt.DECIDE_TRADE)
+    sent = {}
+
+    def capture(condition):
+        def decider(system, user):
+            sent[condition] = (system, user)
+            raise reask.DecisionFormatError("captured")
+        return decider
+
+    for condition in ("plain_high", "saboteur_high"):
+        reask.ask(capture(condition), ply, None, "leader_offer", condition)
+    (plain, user), (saboteur, sab_user) = sent["plain_high"], sent["saboteur_high"]
+    assert sab_user == user
+    assert plain == ROSTER["Plain"].system_prompt
+    assert saboteur == ROSTER["Saboteur"].system_prompt
+
+
+def test_the_robber_counts_against_the_opponent_ahead_of_the_others_not_the_agent():
+    """A saboteur that is itself ahead still has someone to stop. Counting its
+    own score would make every position where it leads look like one with no
+    leader, and drop the robber moves aimed at the real runner-up."""
+    game = Game(players=[RandomPlayer(c) for c in list(FULL_TABLE)], seed=5)
+    state = game.state
+    me, rival, *rest = state.colors
+    for i in range(len(state.colors)):
+        state.player_state[f"P{i}_VICTORY_POINTS"] = 3
+    state.player_state[f"P{state.colors.index(me)}_VICTORY_POINTS"] = 8
+    state.player_state[f"P{state.colors.index(rival)}_VICTORY_POINTS"] = 5
+    assert reask.leading_opponent(state, me) == rival
+    assert reask.robs_leader(state, me, Action(me, ActionType.MOVE_ROBBER, ((0, 0, 0), rival)))
+    assert not reask.robs_leader(state, me, Action(me, ActionType.MOVE_ROBBER, ((0, 0, 0), rest[0])))
+    state.player_state[f"P{state.colors.index(rest[0])}_VICTORY_POINTS"] = 5
+    assert reask.leading_opponent(state, me) is None

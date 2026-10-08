@@ -355,9 +355,16 @@ was accepted by Chat Completions and reported 0 written — the plain input rate
 so a match played from here on is back to ~$0.23; a third call, through the
 schema path a match uses, also reported 0 written. `win_probe.py` and
 `reask.py` keep the default: they repeat positions, and there the cache hits
-are worth more than the write fee costs. The larger saving, a static prefix over 1,024 tokens (system
-prompt, the map without buildings, the ports without owners, the offer
-instructions) marked as a breakpoint, is a prompt change and a v4 candidate.
+are worth more than the write fee costs, as long as a position is asked more
+than once: at one sample per position nothing is read back, and both scripts
+then turn writes off too.
+
+A static prefix marked as a breakpoint does not rescue a match either. Measured
+on 2026-10-08 against the v4 prompt: of ~1,900 input tokens per call, the parts
+that never change in a match (system prompt, the map without buildings or
+robber, port positions, the offer instructions) come to ~2,200 characters,
+~800 tokens, under the 1,024 minimum. And at effort `high` input is 24% of a
+match's bill, output the rest, so even a cached static prefix would save ~9%.
 
 ## The baseline bot
 

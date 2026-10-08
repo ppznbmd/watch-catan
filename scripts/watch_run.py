@@ -76,6 +76,6 @@ while True:
         if fallbacks in (1, 10):
             print(f"FELL BACK TO REFLEX #{fallbacks}: {e.get('complaint')}", flush=True)
     elif kind == "game_over":
-        print(f"GAME OVER — winner {e.get('winner')} in {e.get('turns')} turns, "
+        print(f"GAME OVER — winner {e.get('winner') or 'nobody (turn limit)'} in {e.get('turns')} turns, "
               f"{e.get('offers')} offers, {e.get('seconds')}s", flush=True)
         sys.exit(0)

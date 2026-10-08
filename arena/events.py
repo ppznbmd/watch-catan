@@ -59,3 +59,18 @@ class EventLog:
 def read_run(path) -> List[dict]:
     with open(path) as fh:
         return [json.loads(line) for line in fh if line.strip()]
+
+
+def read_run_lenient(path) -> List[dict]:
+    """`read_run` for a file a crash cut short: every event up to the first line
+    that does not parse. A reboot mid-match left one padded with zero bytes."""
+    events = []
+    with open(path, errors="replace") as fh:
+        for line in fh:
+            if not line.strip("\x00\n\r\t "):
+                continue
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                break
+    return events

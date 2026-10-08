@@ -1,0 +1,64 @@
+2026-10-08T02:00:36 waiting for batch-saboteur-20261008-0045-seed201.log
+2026-10-08T03:56:36 seed 202: spent so far $0.85 over 1 matches
+2026-10-08T03:56:36 start seed 202, fourth seat Plain
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: GREY in 109 turns (8086.0s, 145 offers made)
+  GREY    Plain              gpt-5.6-luna         10 VP  124 calls  0 unusable  0 fallbacks  (30 calls saved)
+  RED     Plain              gpt-5.6-luna          9 VP  161 calls  0 unusable  0 fallbacks  (38 calls saved)
+  BLUE    Plain              gpt-5.6-luna          5 VP  150 calls  0 unusable  0 fallbacks  (37 calls saved)
+  ORANGE  Plain              gpt-5.6-luna          8 VP  136 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         253,812 in       0 cached 140,906 out (0 written to cache)  $0.2198
+  RED     gpt-5.6-luna         320,142 in       0 cached 178,194 out (0 written to cache)  $0.2779
+  BLUE    gpt-5.6-luna         297,645 in       0 cached 151,929 out (0 written to cache)  $0.2418
+  ORANGE  gpt-5.6-luna         277,581 in       0 cached 131,985 out (0 written to cache)  $0.2139
+          total                                                  $0.9535
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-035637-4977d4.jsonl
+2026-10-08T06:11:23 done seed 202, fourth seat Plain
+2026-10-08T06:11:23 start seed 202, fourth seat Saboteur
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: BLUE in 103 turns (5279.9s, 117 offers made)
+  GREY    Plain              gpt-5.6-luna          6 VP  120 calls  0 unusable  0 fallbacks  (32 calls saved)
+  RED     Plain              gpt-5.6-luna          7 VP  129 calls  0 unusable  0 fallbacks  (30 calls saved)
+  BLUE    Plain              gpt-5.6-luna         10 VP  120 calls  0 unusable  0 fallbacks  (33 calls saved)
+  BLACK   Saboteur           gpt-5.6-luna          8 VP  101 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         238,564 in       0 cached 129,671 out (0 written to cache)  $0.2033
+  RED     gpt-5.6-luna         250,862 in       0 cached 122,485 out (0 written to cache)  $0.1972
+  BLUE    gpt-5.6-luna         236,670 in       0 cached 122,707 out (0 written to cache)  $0.1946
+  BLACK   gpt-5.6-luna         212,139 in       0 cached  99,153 out (0 written to cache)  $0.1614
+          total                                                  $0.7565
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-061124-795fe0.jsonl
+2026-10-08T07:39:24 done seed 202, fourth seat Saboteur
+2026-10-08T07:39:24 seed 203: spent so far $1.69 over 3 matches
+2026-10-08T07:39:24 start seed 203, fourth seat Plain
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: RED in 68 turns (3291.4s, 86 offers made)
+  GREY    Plain              gpt-5.6-luna          7 VP   91 calls  0 unusable  0 fallbacks
+  RED     Plain              gpt-5.6-luna         10 VP   93 calls  0 unusable  0 fallbacks  (15 calls saved)
+  BLUE    Plain              gpt-5.6-luna          4 VP   88 calls  0 unusable  0 fallbacks  (24 calls saved)
+  ORANGE  Plain              gpt-5.6-luna          4 VP   82 calls  0 unusable  0 fallbacks  (26 calls saved)
+
+  GREY    gpt-5.6-luna         182,570 in       0 cached  84,765 out (0 written to cache)  $0.1382
+  RED     gpt-5.6-luna         181,828 in       0 cached  83,789 out (0 written to cache)  $0.1369
+  BLUE    gpt-5.6-luna         167,851 in       0 cached  99,072 out (0 written to cache)  $0.1525
+  ORANGE  gpt-5.6-luna         157,817 in       0 cached  72,933 out (0 written to cache)  $0.1191
+          total                                                  $0.5467
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-073925-6e7c07.jsonl
+2026-10-08T08:34:16 done seed 203, fourth seat Plain
+2026-10-08T08:34:16 start seed 203, fourth seat Saboteur

@@ -139,18 +139,45 @@ def run_match(
     seed: Optional[int] = None,
     on_event=None,
     scratch: bool = False,
+    max_turns: int = TURNS_LIMIT,
+    resume=None,
+    resume_seed: Optional[int] = None,
 ) -> dict:
     """`seats` is a list of (Color, player_factory). A factory takes
     (color, talk, log) and returns a Player — so an LLM seat and a baseline bot
-    seat are built the same way."""
+    seat are built the same way.
+
+    `max_turns` ends a match with no winner. The engine's own limit is 1000
+    turns, ten times the longest match played here; a seat that plays to stop
+    others winning can stretch a match toward it, and every turn is paid for.
+
+    `resume` is a `Ply` from `arena.rebuild.resume_point`: the match continues
+    from that position in a new run file whose game_start names the run and ply
+    it came from. Each LLM seat gets back what it would have seen next (its last
+    note, how much history it had read); the agents keep no other memory. The
+    dice from there on come from `resume_seed`, since the rebuilt game never
+    drew from its rng and would otherwise replay the opening rolls."""
     game_id = game_id or f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6]}"
-    talk = TableTalk(max_offers_per_turn=max_offers_per_turn)
+    talk = resume.talk if resume else TableTalk(max_offers_per_turn=max_offers_per_turn)
 
     with EventLog(game_id, runs_dir=runs_dir, scratch=scratch) as log:
         if on_event:
             log.subscribe(on_event)
         players = [factory(color, talk, log) for color, factory in seats]
-        game = Game(players=players, seed=seed)
+        if resume:
+            game = resume.game
+            by_color = {p.color: p for p in players}
+            if set(by_color) != set(game.state.colors):
+                raise ValueError(f"seats {sorted(c.value for c in by_color)} do not match "
+                                 f"the resumed table {[c.value for c in game.state.colors]}")
+            game.state.players = [by_color[c] for c in game.state.colors]
+            for p in players:
+                if isinstance(p, LLMPlayer):
+                    p._seen = resume.seen_all.get(p.color.value, 0)
+                    p._note = resume.notes_all.get(p.color.value)
+            game.random.seed(resume_seed)
+        else:
+            game = Game(players=players, seed=seed)
         game.watch(BotNarrator(
             log, [p.color for p in players if not isinstance(p, LLMPlayer)]
         ))
@@ -166,6 +193,13 @@ def run_match(
                     "name": getattr(getattr(p, "persona", None), "name", type(p).__name__),
                     "blurb": getattr(getattr(p, "persona", None), "blurb", ""),
                     "model": getattr(p, "model", None),
+                    # Effort changes how well a model plays (the win probe: Luna
+                    # finds 54% of wins at 'high', 38% at its default), so
+                    # matches at different efforts are different groups.
+                    "effort": getattr(getattr(p, "decider", None), "effort", None),
+                    # The tier asked for. Each call's usage records the tier
+                    # actually served, which is what the bill follows.
+                    "service_tier": getattr(getattr(p, "decider", None), "service_tier", None),
                 }
                 for p in players
             ],
@@ -177,14 +211,19 @@ def run_match(
             # The offer budget changes what a prompt says ("N offer(s) left"), so a
             # rebuilt prompt needs it. Matches before this was logged used 3.
             max_offers_per_turn=max_offers_per_turn,
+            max_turns=max_turns,
             # What the agents were shown. Runs before version 3 do not carry it.
             prompt_version=PROMPT_VERSION,
             board=encode(game),
+            **({"resumed_from": {"run": resume.start["game_id"], "ply": resume.index,
+                                 "turn": resume.game.state.num_turns,
+                                 "resume_seed": resume_seed}} if resume else {}),
         )
-        talk.observe(game.state)
+        if not resume:
+            talk.observe(game.state)
 
         started = time.time()
-        while game.winning_color() is None and game.state.num_turns < TURNS_LIMIT:
+        while game.winning_color() is None and game.state.num_turns < max_turns:
             game.play_tick()
             talk.observe(game.state)
             log.emit("state", **snapshot(game))
@@ -193,6 +232,7 @@ def run_match(
         summary = {
             "game_id": game_id,
             "winner": winner.value if winner else None,
+            "truncated": winner is None,
             "turns": game.state.num_turns,
             "actions": len(game.state.action_records),
             "seconds": round(time.time() - started, 1),

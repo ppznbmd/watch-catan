@@ -65,6 +65,10 @@ class Ply:
     since: int = 0
     #: (turn, reasoning) of this seat's last decision on its own turn
     note: Optional[tuple] = None
+    #: `since` and `note` for every seat, not just the one acting: what a
+    #: resumed match hands each LLMPlayer
+    seen_all: Optional[dict] = None
+    notes_all: Optional[dict] = None
 
     @property
     def seat(self) -> dict:
@@ -126,7 +130,8 @@ def plies(run: Union[str, Path, List[dict]]) -> Iterator[Ply]:
         # ply without one gets None rather than a neighbour's reasoning.
         mine = actor if actor and actor.get("color") == last["color"] else None
         yield Ply(index, game, record.action, mine, event, start, talk,
-                  seen.get(last["color"], 0), notes.get(last["color"]))
+                  seen.get(last["color"], 0), notes.get(last["color"]),
+                  dict(seen), dict(notes))
 
         if mine and mine["kind"] in ("decision", "fallback"):
             # Both are emitted only after LLMPlayer built a prompt, which is
@@ -163,4 +168,28 @@ def position(run, predicate) -> Optional[Ply]:
 def detach(ply: Ply) -> Ply:
     """A copy of `ply` that iteration will not advance underneath you."""
     return Ply(ply.index, ply.game.copy(), ply.action, ply.actor, ply.snapshot,
-               ply.start, ply.talk.copy(), ply.since, ply.note)
+               ply.start, ply.talk.copy(), ply.since, ply.note,
+               dict(ply.seen_all or {}), dict(ply.notes_all or {}))
+
+
+def resume_point(run, turn: Optional[int] = None) -> Ply:
+    """Where an interrupted match picks up: the roll that opens `turn`, or the
+    last roll the log holds. A turn start, because mid-turn the table holds
+    offers and answers in flight that no event fully describes.
+
+    Reads past a torn tail: a crash can leave the last line half written or
+    padded with zero bytes, and everything before it is still good."""
+    if isinstance(run, (str, Path)):
+        from arena.events import read_run_lenient
+        run = read_run_lenient(run)
+    found = None
+    for ply in plies(run):
+        if ply.action.action_type.value != "ROLL":
+            continue
+        if turn is None or ply.game.state.num_turns == turn:
+            found = detach(ply)
+            if turn is not None:
+                break
+    if found is None:
+        raise RebuildError(f"no roll opening turn {turn}")
+    return found

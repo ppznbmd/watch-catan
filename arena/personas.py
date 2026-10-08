@@ -78,11 +78,32 @@ PLAIN = Persona(
     color="GREY",
 )
 
-ROSTER = {p.name: p for p in (HARD_BARGAINER, COOPERATOR, QUIET_BUILDER, PLAIN)}
+# Not a style but a different goal: the one seat whose aim is not its own win.
+# It may still win; what it exists to prevent is anyone else winning, which is
+# what lets a match show how a table copes with a player who will pay to hurt it.
+# The trade sentence is spelled out because a first draft that only said "trade
+# with the players furthest behind" was read as "help nobody": re-asked on
+# recorded offers it refused the last-placed player as often as the leader
+# (experiments/reask-saboteur-check-20261008.jsonl).
+SABOTEUR = Persona(
+    name="Saboteur",
+    blurb="Plays to stop whoever is closest to winning.",
+    instructions="""Your aim is not to win. It is to stop whoever is closest to winning.
+Each turn, look at who leads on public points and who is about to take longest road or
+largest army, and choose the move that sets them back most, even when another move would
+help you more: rob them, refuse their offers, build where they want to expand. Trades are
+a weapon: refuse anything that helps a player near the lead, and accept fair offers from
+players well behind, because a stronger trailing player is one more obstacle for the
+leader. If you can win on your own turn, take it: the only result you are trying to
+prevent is someone else winning.""",
+    color="BLACK",
+)
 
-#: Every seat colour. Catanatron ships the first four; GREY is added in
-#: `arena/colors.py`. A table still seats at most four, so one is always free.
-COLORS = ("RED", "BLUE", "ORANGE", "WHITE", "GREY")
+ROSTER = {p.name: p for p in (HARD_BARGAINER, COOPERATOR, QUIET_BUILDER, PLAIN, SABOTEUR)}
+
+#: Every seat colour. Catanatron ships the first four; GREY and BLACK are added
+#: in `arena/colors.py`. A table still seats at most four, so two are always free.
+COLORS = ("RED", "BLUE", "ORANGE", "WHITE", "GREY", "BLACK")
 
 #: The bot's colour. No persona claims it, so the baseline sits in the same place
 #: in every match.

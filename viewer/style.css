@@ -15,6 +15,7 @@
   --orange: #cf7a22;
   --white: #cfc6b8;
   --grey: #5b5853;
+  --black: #1f1c19;
 
   --wood: #5c7a45;
   --brick: #ad5a3c;
@@ -48,7 +49,7 @@
   :root:not([data-theme="light"]) {
     --paper: #14120f; --panel: #1c1a16; --ink: #ece7e0;
     --muted: #928b83; --rule: #2e2a25; --accent: #e8683a;
-    --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84;
+    --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84; --black: #4f4943;
     --wood: #46603a; --brick: #8c4632; --sheep: #7d9757; --wheat: #b08a2c;
     --ore: #5f6a76; --desert: #9d8d70; --water: #232d34;
     --wood-ink: #8fb37a; --brick-ink: #d99b83; --sheep-ink: #b6cf92;
@@ -58,7 +59,7 @@
 :root[data-theme="dark"] {
   --paper: #14120f; --panel: #1c1a16; --ink: #ece7e0;
   --muted: #928b83; --rule: #2e2a25; --accent: #e8683a;
-  --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84;
+  --red: #d9594a; --blue: #5c8bd6; --orange: #e79a43; --white: #e6dfd2; --grey: #8f8a84; --black: #4f4943;
   --wood: #46603a; --brick: #8c4632; --sheep: #7d9757; --wheat: #b08a2c;
   --ore: #5f6a76; --desert: #9d8d70; --water: #232d34;
   --wood-ink: #8fb37a; --brick-ink: #d99b83; --sheep-ink: #b6cf92;
@@ -234,6 +235,7 @@ button:hover, select:hover { border-color: var(--muted); }
 .seat-ORANGE { stroke: var(--orange); fill: var(--orange); }
 .seat-WHITE { stroke: var(--white); fill: var(--white); }
 .seat-GREY { stroke: var(--grey); fill: var(--grey); }
+.seat-BLACK { stroke: var(--black); fill: var(--black); }
 
 /* What just happened. Announced for one beat, then it is just part of the board. */
 .is-new { animation: arrive 900ms ease-out; }
@@ -289,6 +291,7 @@ button:hover, select:hover { border-color: var(--muted); }
 .seat-bg-ORANGE { color: var(--orange); }
 .seat-bg-WHITE { color: var(--white); }
 .seat-bg-GREY { color: var(--grey); }
+.seat-bg-BLACK { color: var(--black); }
 
 .seat header { display: flex; align-items: center; gap: var(--s2); }
 

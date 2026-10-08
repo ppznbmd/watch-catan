@@ -1,0 +1,109 @@
+2026-10-08T10:28:57 resume 20261008-083417-1509e0.jsonl; its first part: 20261008-083417-1509e0.jsonl: unfinished at turn 75, 68 min, $0.288
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+resuming 20261008-083417-1509e0.jsonl at turn 74 (ply 663), new dice seed 1475951949
+
+------------------------------------------------------------------------
+winner: BLUE in 89 turns (1380.5s, 96 offers made)
+  GREY    Plain              gpt-5.6-luna          9 VP   22 calls  0 unusable  0 fallbacks
+  RED     Plain              gpt-5.6-luna          9 VP   30 calls  0 unusable  0 fallbacks  (4 calls saved)
+  BLUE    Plain              gpt-5.6-luna         10 VP   39 calls  0 unusable  0 fallbacks  (4 calls saved)
+  BLACK   Saboteur           gpt-5.6-luna          4 VP   23 calls  0 unusable  0 fallbacks  (3 calls saved)
+
+  GREY    gpt-5.6-luna          46,747 in       0 cached  24,053 out (0 written to cache)  $0.0382
+  RED     gpt-5.6-luna          63,384 in       0 cached  29,765 out (0 written to cache)  $0.0484
+  BLUE    gpt-5.6-luna          82,296 in       0 cached  32,750 out (0 written to cache)  $0.0558
+  BLACK   gpt-5.6-luna          52,544 in       0 cached  30,550 out (0 written to cache)  $0.0472
+          total                                                  $0.1895
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-102858-f3d9be.jsonl
+2026-10-08T10:51:58 MATCH 20261008-102858-f3d9be.jsonl: BLUE at turn 89, 23 min, $0.094 (resumed; first part above)
+2026-10-08T10:51:59 seed 204: spent so far $2.34 over 6 matches
+2026-10-08T10:51:59 start seed 204, fourth seat Plain
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: BLUE in 116 turns (6400.3s, 136 offers made)
+  GREY    Plain              gpt-5.6-luna          9 VP  151 calls  0 unusable  0 fallbacks  (35 calls saved)
+  RED     Plain              gpt-5.6-luna          9 VP  151 calls  0 unusable  0 fallbacks  (38 calls saved)
+  BLUE    Plain              gpt-5.6-luna         10 VP  150 calls  0 unusable  0 fallbacks  (32 calls saved)
+  ORANGE  Plain              gpt-5.6-luna          9 VP  138 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         304,774 in       0 cached 139,345 out (0 written to cache)  $0.2282
+  RED     gpt-5.6-luna         305,789 in       0 cached 127,418 out (0 written to cache)  $0.2141
+  BLUE    gpt-5.6-luna         304,016 in       0 cached 146,896 out (0 written to cache)  $0.2371
+  ORANGE  gpt-5.6-luna         274,346 in       0 cached 133,422 out (0 written to cache)  $0.2150
+          total                                                  $0.8943
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-105159-003fcb.jsonl
+2026-10-08T12:38:40 done seed 204, fourth seat Plain
+2026-10-08T12:38:40 MATCH 20261008-105159-003fcb.jsonl: BLUE at turn 116, 107 min, $0.439
+2026-10-08T12:38:40 start seed 204, fourth seat Saboteur
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: GREY in 119 turns (6985.2s, 148 offers made)
+  GREY    Plain              gpt-5.6-luna         10 VP  153 calls  0 unusable  0 fallbacks  (40 calls saved)
+  RED     Plain              gpt-5.6-luna          8 VP  168 calls  0 unusable  0 fallbacks  (49 calls saved)
+  BLUE    Plain              gpt-5.6-luna          6 VP  168 calls  0 unusable  0 fallbacks  (40 calls saved)
+  BLACK   Saboteur           gpt-5.6-luna          5 VP  125 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         305,960 in       0 cached 194,629 out (0 written to cache)  $0.2947
+  RED     gpt-5.6-luna         341,108 in       0 cached 163,588 out (0 written to cache)  $0.2645
+  BLUE    gpt-5.6-luna         343,207 in       0 cached 170,212 out (0 written to cache)  $0.2729
+  BLACK   gpt-5.6-luna         268,002 in       0 cached  93,322 out (0 written to cache)  $0.1656
+          total                                                  $0.9978
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-123841-2204b2.jsonl
+2026-10-08T14:35:07 done seed 204, fourth seat Saboteur
+2026-10-08T14:35:07 MATCH 20261008-123841-2204b2.jsonl: GREY at turn 119, 116 min, $0.492
+2026-10-08T14:35:07 seed 205: spent so far $3.28 over 8 matches
+2026-10-08T14:35:07 start seed 205, fourth seat Plain
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: ORANGE in 94 turns (4737.7s, 131 offers made)
+  GREY    Plain              gpt-5.6-luna          6 VP  119 calls  0 unusable  0 fallbacks  (29 calls saved)
+  RED     Plain              gpt-5.6-luna          6 VP  113 calls  0 unusable  0 fallbacks  (38 calls saved)
+  BLUE    Plain              gpt-5.6-luna          6 VP  130 calls  0 unusable  0 fallbacks  (35 calls saved)
+  ORANGE  Plain              gpt-5.6-luna         10 VP  119 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         233,369 in       0 cached 121,034 out (0 written to cache)  $0.1919
+  RED     gpt-5.6-luna         223,958 in       0 cached 117,268 out (0 written to cache)  $0.1855
+  BLUE    gpt-5.6-luna         255,066 in       0 cached 133,310 out (0 written to cache)  $0.2110
+  ORANGE  gpt-5.6-luna         234,078 in       0 cached  99,264 out (0 written to cache)  $0.1659
+          total                                                  $0.7543
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-143508-807131.jsonl
+2026-10-08T15:54:06 done seed 205, fourth seat Plain
+2026-10-08T15:54:06 MATCH 20261008-143508-807131.jsonl: ORANGE at turn 94, 79 min, $0.371
+2026-10-08T15:54:06 start seed 205, fourth seat Saboteur
+
+watch-catan — gpt-5.6-luna (effort: high, flex)
+
+
+------------------------------------------------------------------------
+winner: RED in 99 turns (3839.2s, 103 offers made)
+  GREY    Plain              gpt-5.6-luna          7 VP  113 calls  0 unusable  0 fallbacks  (29 calls saved)
+  RED     Plain              gpt-5.6-luna         11 VP  122 calls  0 unusable  0 fallbacks  (28 calls saved)
+  BLUE    Plain              gpt-5.6-luna          4 VP   99 calls  0 unusable  0 fallbacks  (29 calls saved)
+  BLACK   Saboteur           gpt-5.6-luna          5 VP   84 calls  0 unusable  0 fallbacks
+
+  GREY    gpt-5.6-luna         221,896 in       0 cached  96,701 out (0 written to cache)  $0.1604
+  RED     gpt-5.6-luna         236,098 in       0 cached 101,574 out (0 written to cache)  $0.1691
+  BLUE    gpt-5.6-luna         190,685 in       0 cached  92,431 out (0 written to cache)  $0.1491
+  BLACK   gpt-5.6-luna         175,816 in       0 cached  80,183 out (0 written to cache)  $0.1314
+          total                                                  $0.6100
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-155407-ded986.jsonl
+2026-10-08T16:58:06 done seed 205, fourth seat Saboteur
+2026-10-08T16:58:06 MATCH 20261008-155407-ded986.jsonl: RED at turn 99, 64 min, $0.301
+2026-10-08T16:58:07 seed 206: spent so far $3.95 over 10 matches
+2026-10-08T16:58:07 start seed 206, fourth seat Plain

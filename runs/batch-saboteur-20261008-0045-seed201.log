@@ -1,0 +1,39 @@
+=== seed 201, fourth seat Plain, 2026-10-08T00:45:41-03:00
+
+watch-catan — gpt-5.6-luna (effort: high)
+
+
+------------------------------------------------------------------------
+winner: GREY in 74 turns (5138.3s, 95 offers made)
+  GREY    Plain              gpt-5.6-luna         10 VP  109 calls  0 unusable  0 fallbacks
+  RED     Plain              gpt-5.6-luna          6 VP   79 calls  0 unusable  0 fallbacks  (29 calls saved)
+  BLUE    Plain              gpt-5.6-luna          9 VP  103 calls  0 unusable  0 fallbacks  (20 calls saved)
+  ORANGE  Plain              gpt-5.6-luna          6 VP  108 calls  0 unusable  0 fallbacks  (24 calls saved)
+
+  GREY    gpt-5.6-luna         213,380 in       0 cached 106,492 out (0 written to cache)  $0.1705
+  RED     gpt-5.6-luna         153,606 in       0 cached  92,312 out (0 written to cache)  $0.1415
+  BLUE    gpt-5.6-luna         202,427 in       0 cached 108,155 out (0 written to cache)  $0.1703
+  ORANGE  gpt-5.6-luna         213,182 in       0 cached 104,344 out (0 written to cache)  $0.1678
+          total                                                  $0.6501
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-004542-1c2739.jsonl
+=== seed 201, fourth seat Saboteur, 2026-10-08T02:11:21-03:00
+
+watch-catan — gpt-5.6-luna (effort: high)
+
+
+------------------------------------------------------------------------
+winner: RED in 124 turns (6198.1s, 156 offers made)
+  GREY    Plain              gpt-5.6-luna          8 VP  132 calls  0 unusable  0 fallbacks
+  RED     Plain              gpt-5.6-luna         10 VP  158 calls  0 unusable  0 fallbacks  (42 calls saved)
+  BLUE    Plain              gpt-5.6-luna          8 VP  145 calls  0 unusable  0 fallbacks  (40 calls saved)
+  BLACK   Saboteur           gpt-5.6-luna          3 VP  124 calls  0 unusable  0 fallbacks  (25 calls saved)
+
+  GREY    gpt-5.6-luna         253,295 in       0 cached 124,755 out (0 written to cache)  $0.2004
+  RED     gpt-5.6-luna         304,389 in       0 cached 137,728 out (0 written to cache)  $0.2262
+  BLUE    gpt-5.6-luna         282,693 in       0 cached 151,099 out (0 written to cache)  $0.2379
+  BLACK   gpt-5.6-luna         256,624 in       0 cached 116,350 out (0 written to cache)  $0.1909
+          total                                                  $0.8553
+
+replay: /home/pedro/projects/watch-catan/runs/20261008-021121-6e3284.jsonl
+=== pair done 2026-10-08T03:54:40-03:00

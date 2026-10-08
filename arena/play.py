@@ -10,8 +10,10 @@ across two personas to compare the prompts. Both are one flag.
 
 import argparse
 import sys
+from pathlib import Path
 from datetime import datetime, timezone
 
+from catanatron.game import TURNS_LIMIT
 from catanatron.models.player import Color
 from catanatron.players.value import ValueFunctionPlayer
 from catanatron.players.weighted_random import WeightedRandomPlayer
@@ -93,6 +95,7 @@ DRY_RUN_STYLES = {
     "Cooperator": "trader",
     "Quiet builder": "quiet",
     "Plain": "trader",
+    "Saboteur": "tough",
 }
 
 
@@ -193,7 +196,19 @@ def main(argv=None):
                          "provider's own default applies — on gpt-5.6-luna that is "
                          "'medium', and reasoning tokens bill as output. "
                          "'none' is the cheapest setting.")
+    ap.add_argument("--flex", action="store_true",
+                    help="OpenAI's flex tier: half price, served when there is "
+                         "capacity. A call refused through every wait becomes a "
+                         "reflex move and is counted in fallbacks")
+    ap.add_argument("--max-turns", type=int, default=TURNS_LIMIT,
+                    help="end the match with no winner after this many turns "
+                         f"(default: the engine's {TURNS_LIMIT})")
     ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--resume", type=Path, default=None, metavar="RUN",
+                    help="continue an interrupted match from the roll that opens its "
+                         "last logged turn (or --resume-turn), in a new run file. "
+                         "Give the same seats it was played with")
+    ap.add_argument("--resume-turn", type=int, default=None)
     ap.add_argument("--max-offers", type=int, default=2, help="offers per player per turn")
     ap.add_argument("--dry-run", action="store_true",
                     help="scripted agents instead of a model — spends nothing")
@@ -233,9 +248,18 @@ def main(argv=None):
                 ap.error(str(exc))
             if model not in deciders:
                 try:
+                    # 'high' reasons past the default 4,096-token cap, and a
+                    # cut-off answer becomes a fallback move (5 of 166 in the
+                    # win probe, 2026-10-07).
+                    budget = ({"max_tokens": 16384, "timeout": 300.0}
+                              if args.effort == "high" else {})
+                    if args.flex:
+                        # flex keeps its own 15-minute timeout, set in make_decider
+                        budget.pop("timeout", None)
                     deciders[model] = make_decider(model, effort=args.effort,
-                                                   cache_writes=False)
-                except RuntimeError as exc:
+                                                   cache_writes=False, flex=args.flex,
+                                                   **budget)
+                except (RuntimeError, ValueError) as exc:
                     ap.error(str(exc))
             decider = deciders[model]
         seats.append((Color[persona_colors[i]], llm_seat(ROSTER[persona], decider)))
@@ -247,13 +271,23 @@ def main(argv=None):
     else:
         models = sorted({m or args.model for m, _ in specs})
         effort = args.effort or "provider default"
-        print(f"\nwatch-catan — {', '.join(models)} (effort: {effort})\n")
+        tier = ", flex" if args.flex else ""
+        print(f"\nwatch-catan — {', '.join(models)} (effort: {effort}{tier})\n")
+    resume = resume_seed = None
+    if args.resume:
+        import random
+        from arena.rebuild import resume_point
+        resume = resume_point(args.resume, args.resume_turn)
+        resume_seed = random.randrange(2 ** 31)
+        print(f"resuming {args.resume.name} at turn {resume.game.state.num_turns} "
+              f"(ply {resume.index}), new dice seed {resume_seed}")
     summary = run_match(seats=seats, seed=args.seed, max_offers_per_turn=args.max_offers,
+                        resume=resume, resume_seed=resume_seed,
                         on_event=None if args.quiet else narrate,
-                        scratch=args.dry_run)
+                        scratch=args.dry_run, max_turns=args.max_turns)
 
     print(f"\n{'-' * 72}")
-    print(f"winner: {summary['winner']} in {summary['turns']} turns "
+    print(f"winner: {summary['winner'] or 'nobody (turn limit)'} in {summary['turns']} turns "
           f"({summary['seconds']}s, {summary['offers']} offers made)")
     for color, a in summary["agents"].items():
         tag = a.get("model") or "bot"
