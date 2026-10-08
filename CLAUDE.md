@@ -217,7 +217,8 @@ Flash's reasoning is the skill: thinking off or effort `low` lost most wins on a
 effort, which for DeepSeek is `high`. Re-asked under v4 (2026-10-07, 166 × 1,
 `--any-prompt`): Luna 38% at default, 54% at `high`; Terra 40% and 49%; Flash
 66%. At `high` Flash leads Luna by 12 points (95% 2 to 22) and Terra by 17 (8
-to 26), and Luna and Terra are level. Compare models at matched effort,
+to 26), and Luna and Terra are level. Separating Luna from Terra at `high` (+6, −2 to +15)
+needs ~600 fresh positions: ~$5 at flex, offered and deferred on 2026-10-07. Compare models at matched effort,
 and raise the 4,096-token cap before `high` (5 of 166 were cut off). An answer
 that leaves the win for later is a miss, not a deferral: its reasoning chases a
 slower win. Flash has played two matches (18 Sep, one seat; 24 Sep, all
