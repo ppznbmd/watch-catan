@@ -215,8 +215,9 @@ call. On 150 positions × 3: deepseek-flash 61%, gpt-5.6-terra 45%, gpt-5.6-luna
 Flash's reasoning is the skill: thinking off or effort `low` lost most wins on a
 5-position preview. Those numbers compare each model at its provider's default
 effort, which for DeepSeek is `high`. Re-asked under v4 (2026-10-07, 166 × 1,
-`--any-prompt`): Luna 38% at default, 54% at `high`, Flash 66%; the Flash-Luna
-gap falls from 28 points to 12 (95% 2 to 22). Compare models at matched effort,
+`--any-prompt`): Luna 38% at default, 54% at `high`; Terra 40% and 49%; Flash
+66%. At `high` Flash leads Luna by 12 points (95% 2 to 22) and Terra by 17 (8
+to 26), and Luna and Terra are level. Compare models at matched effort,
 and raise the 4,096-token cap before `high` (5 of 166 were cut off). An answer
 that leaves the win for later is a miss, not a deferral: its reasoning chases a
 slower win. Flash has played two matches (18 Sep, one seat; 24 Sep, all
